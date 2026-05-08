@@ -1,0 +1,18 @@
+:root{
+    --color-link : rgb(7, 149, 205);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+.main-navbar a{
+    text-decoration: none;
+    color:var(--color-link);
+}
