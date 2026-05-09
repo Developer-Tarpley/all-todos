@@ -1,0 +1,128 @@
+/**
+* todo-list/index.htm styles
+*/
+
+
+/**
+* Header Styles
+ */
+.todo-header {
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+
+/**
+* Main Styles
+ */
+.todo-content {
+    /* border: 1px solid; */
+}
+
+/********** Section One */
+.add-task-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.task-input {
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    padding: 0.75em;
+    border: none;
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.10),
+        0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.task-input:focus {
+    outline: 0.5px solid #ccc;
+}
+
+.add-task-button {
+    border-radius: 1em;
+    font-size: 1.25rem;
+    width: 75%;
+    padding: 0.5em;
+    margin: 0px auto;
+    border: 1px solid hsla(211, 90%, 76%, 0.3);
+    /* border: 0.5px solid hsl(160, 97%, 70%); */
+    color: hsl(160, 77%, 70%);
+    background: none;
+    box-shadow:
+        0 4px 12px hsla(221, 90%, 76%, 0.43),
+        0 12px 32px hsla(160, 97%, 70%, 0.12);
+}
+
+.add-task-button:hover {
+    background: hsl(160, 97%, 70%);
+    color: hsl(0, 1%, 45%);
+    cursor: pointer;
+}
+
+/********** Section Two */
+.task-display-board {
+    border: 1px solid #000;
+    font-size: 1.5rem;
+}
+
+.task-display-board input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    /* accent-color: hsl(160, 97%, 70%); */
+    accent-color: hsla(211, 90%, 76%, 0.3);
+}
+
+/* Display Tasks */
+
+.select-all-container {
+    background: #ccc;
+
+}
+
+.select-all-checkbox {}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid hsla(160, 97%, 70%, 0.5); */
+}
+
+
+.task-li-container {
+    border: 1px solid hsla(211, 90%, 76%, 0.3);
+    border-radius: 5px;
+    box-shadow:
+        0 4px 12px hsla(221, 90%, 76%, 0.43),
+        0 12px 32px hsla(160, 97%, 70%, 0.12);
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+    gap: 5px;
+    overflow-x: hidden;
+    word-wrap: break-word;
+
+}
+
+.task-edit-button {}
+
+.updates-input{
+    padding: 0.75em;
+}
+.updates-button{
+    padding: 12px 14px;
+}
+
+.delete-task-button {}
+
+
+/**
+* Footer Styles
+ */
+todo-footer {}
