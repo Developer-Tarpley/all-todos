@@ -117,9 +117,12 @@ function handleUpdate(li) {
 
     const editInput = document.createElement("input");
     editInput.setAttribute("value", task);
-
+    editInput.setAttribute("class", "updates-input")
+    
     const editInputBtn = document.createElement("button");
     editInputBtn.innerText = "UPDATE";
+    editInputBtn.setAttribute("class", "updates-button")
+
 
     li.append(editInput, editInputBtn);
 
