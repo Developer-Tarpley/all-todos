@@ -26,7 +26,8 @@
     margin: 1rem;
 }
 
-.task-input, .updates-input {
+.task-input,
+.updates-input {
     border-radius: 5px;
     margin: 10px;
     /* margin-bottom: 10px; */
@@ -38,11 +39,14 @@
         0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
-.task-input:focus, .updates-input:focus {
+.task-input:focus,
+.updates-input:focus {
     outline: 0.5px solid #ccc;
 }
 
-.add-task-button, .task-edit-button, .updates-button {
+.add-task-button,
+.updates-button,
+.task-edit-button {
     border-radius: 1em;
     font-size: 1.25rem;
     width: 75%;
@@ -57,7 +61,8 @@
         0 12px 32px hsla(160, 97%, 70%, 0.12);
 }
 
-.add-task-button:hover, .updates-button:hover, .task-edit-button:hover {
+.add-task-button:hover,
+.updates-button:hover {
     background: hsl(160, 97%, 70%);
     color: hsl(0, 1%, 45%);
     cursor: pointer;
@@ -80,7 +85,6 @@
 
 .select-all-container {
     background: #ccc;
-
 }
 
 .select-all-checkbox {}
@@ -109,16 +113,68 @@
     word-wrap: break-word;
 }
 
-.task-edit-button {}
+.top-section-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.top-section-card span{
+    text-align: center;
+    background: none;
+    /* pointer-events: none; */
+    border: none;
+    outline: none;
+}
 
-.updates-input, .updates-button {
+.task-edit-button {
+    /* flex: 1; */
+    position: relative;
+    top: 5px;
+    right: 75px;
+    border-radius: 5px;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+
+    color: hsl(0, 1%, 45%);
+    box-shadow: none;
+}
+
+.task-edit-button:hover{
+    cursor:default;
+    color: hsl(211, 90%, 76%);
+}
+ .delete-task-button:hover{
+    cursor: default;
+    color: hsl(0, 100%, 50%);
+}
+
+.updates-input,
+.updates-button {
     padding: 0.5em;
 }
 
-.updates-button {
-}
+.updates-button {}
 
-.delete-task-button {}
+.delete-task-button {
+    position: relative;
+    top: 5px;
+    left: 75px;
+    background: hsl(160, 97%, 70%);
+    color: hsl(0, 1%, 45%);
+    border-radius: 5px;
+    font-size: 1.25rem;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 0px auto;
+    margin-bottom: 10px;
+    /* font-size: 1rem; */
+    /* border: 1px solid hsla(211, 90%, 76%, 0.3); */
+    /* box-shadow:
+        0 4px 12px hsla(221, 90%, 76%, 0.43),
+        0 12px 32px hsla(160, 97%, 70%, 0.12); */
+}
 
 
 /**
