@@ -11,20 +11,20 @@ const displayBoard = document.getElementById("task-display-board");
  */
 addTaskBtn.addEventListener("click", () => {
     const taskValue = taskInput.value.trim();
-    
+
     crud.create(taskValue, "tasks-today");
-   
+
     location.reload()
 });
 
 taskInput.addEventListener("keydown", (event) => {
     const keyName = event.key;
-    
+
     if (keyName === 'Enter') {
         const taskValue = taskInput.value.trim();
 
         crud.create(taskValue, "tasks-today");
-        
+
         location.reload()
     }
     else { return; }
@@ -53,9 +53,12 @@ function displayTasks(key) {
 
     selectAllContainer.append(selectAllCheckbox, selectAllLabel);
 
-    const delButton = document.createElement("button");
-    delButton.innerText = "DELETE";
-    delButton.setAttribute("class", "delete-task-button");
+    // const delButton = document.createElement("span");
+    // delButton.innerText = "🖉";
+    // delButton.setAttribute("class", "delete-task-button");
+    // const delButton = document.createElement("button");
+    // delButton.innerText = "DELETE TASK/S";
+
 
     const tasks = crud.read(key);
 
@@ -64,10 +67,10 @@ function displayTasks(key) {
         message.innerText = "Currently No Tasks Available";
 
         delButton.setAttribute("disabled", "true");
-        
+
         selectAllCheckbox.setAttribute("disabled", "true");
         selectAllLabel.style.color = "#ccc"
-        
+
         displayUl.appendChild(message);
     }
     else {
@@ -78,23 +81,33 @@ function displayTasks(key) {
             taskLiContainer.setAttribute("class", "task-li-container");
             taskLiContainer.setAttribute("data-id", task);
 
+            const div = document.createElement("div");
+            div.setAttribute("class", "top-section-card");
+
             const taskCheckbox = document.createElement("input");
             taskCheckbox.setAttribute("type", "checkbox");
+
+            const delButton = document.createElement("span");
+            // delButton.innerText = "🖉";
+            delButton.innerText = "🗑";
+            delButton.setAttribute("class", "delete-task-button");
 
             const taskTextSpan = document.createElement("span");
             taskTextSpan.textContent = task;
 
-            const taskEditBtn = document.createElement("button");
+            const taskEditBtn = document.createElement("span");
             taskEditBtn.setAttribute("class", "task-edit-button")
-            taskEditBtn.innerText = "EDIT";
+            taskEditBtn.innerText = "🖉";
+            // taskEditBtn.innerText = "EDIT";
 
-            taskLiContainer.append(taskCheckbox, taskTextSpan, taskEditBtn)
+            div.append(taskCheckbox, taskEditBtn, delButton)
+            taskLiContainer.append(div, taskTextSpan)
             displayUl.appendChild(taskLiContainer);
         });
     }
-    displayBoard.append(selectAllContainer)
+    displayBoard.appendChild(selectAllContainer)
     displayBoard.appendChild(displayUl);
-    displayBoard.append(delButton)
+    // displayBoard.append(delButton)
 }
 
 function clearDisplay() {
@@ -118,7 +131,7 @@ function handleUpdate(li) {
     const editInput = document.createElement("input");
     editInput.setAttribute("value", task);
     editInput.setAttribute("class", "updates-input")
-    
+
     const editInputBtn = document.createElement("button");
     editInputBtn.innerText = "UPDATE";
     editInputBtn.setAttribute("class", "updates-button")
@@ -219,8 +232,8 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     deleteTaskBtn.addEventListener("click", () => {
-        if(isEditing) return;
-        if(selectedTasks < 1) return;
+        if (isEditing) return;
+        if (selectedTasks < 1) return;
         handleRemoveTasks(selectedTasks);
 
         displayTasks("tasks-today");
