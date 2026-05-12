@@ -11,17 +11,12 @@
     font-size: 1.75rem;
 }
 
-;
-
-
 /**
 * Main Styles
  */
 .todo-content {
     /* border: 1px solid; */
 }
-
-;
 
 /********** Section One */
 .add-task-container {
@@ -30,8 +25,6 @@
 
     margin: 1rem;
 }
-
-;
 
 .task-input,
 .updates-input {
@@ -45,14 +38,10 @@
         0 12px 32px rgba(0, 0, 0, 0.12);
 }
 
-;
-
 .task-input:focus,
 .updates-input:focus {
     outline: 0.5px solid #ccc;
 }
-
-;
 
 .add-task-button,
 .updates-button,
@@ -71,8 +60,6 @@
         0 12px 32px hsla(160, 97%, 70%, 0.12);
 }
 
-;
-
 .add-task-button:hover,
 .updates-button:hover {
     color: hsl(0, 1%, 45%);
@@ -80,15 +67,11 @@
     cursor: pointer;
 }
 
-;
-
 /********** Section Two */
 .task-display-board {
     font-size: 1.5rem;
     border: 1px solid #000;
 }
-
-;
 
 .task-display-board input[type="checkbox"] {
     width: 25px;
@@ -96,19 +79,13 @@
     accent-color: hsla(211, 90%, 76%, 0.3);
 }
 
-;
-
 /* Display Tasks */
 
 .select-all-container {
     background: #ccc;
 }
 
-;
-
 .select-all-checkbox {}
-
-;
 
 .task-list {
     display: flex;
@@ -117,8 +94,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-;
 
 .task-li-container {
     display: flex;
@@ -135,15 +110,11 @@
     word-wrap: break-word;
 }
 
-;
-
 .top-section-card {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-;
 
 .top-section-card span {
     text-align: center;
@@ -151,8 +122,6 @@
     border: none;
     outline: none;
 }
-
-;
 
 .task-edit-button {
     position: relative;
@@ -166,24 +135,22 @@
     box-shadow: none;
 }
 
-;
-
 .task-edit-button:hover {
     color: hsl(211, 90%, 76%);
     cursor: default;
-};
+}
 
 .delete-task-button:hover {
     color: hsl(0, 100%, 50%);
     cursor: default;
-};
+}
 
 .updates-input,
 .updates-button {
     padding: 0.5em;
-};
+}
 
-.updates-button {};
+.updates-button {}
 
 .delete-task-button {
     position: relative;
@@ -198,9 +165,9 @@
     color: hsl(0, 1%, 45%);
     background: hsl(160, 97%, 70%);
     border-radius: 5px;
-};
+}
 
 /**
 * Footer Styles
  */
-todo-footer {};
+todo-footer {}
