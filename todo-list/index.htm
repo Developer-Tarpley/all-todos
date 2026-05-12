@@ -1,29 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./todo.css">
     <title>Simple Todo List</title>
 </head>
+
 <body>
     <header class="todo-header">
         <h1>Simple Todo List</h1>
     </header>
+
     <main class="todo-content">
         <section class="add-task-container">
             <input id="task-input" class="task-input" type="text">
             <button id="add-task-button" class="add-task-button">ADD</button>
         </section>
+
+        <section class="select-all-container">
+            <input type="checkbox" class="select-all-checkbox">
+            <span class="select-all-span">Select All</span>
+            <button type="button" class="selected-tasks-delete-button">
+                Remove Tasks
+            </button>
+        </section>
+
         <section id="task-display-board" class="task-display-board">
             <h2>Today's Tasks</h2>
+            <ul class="tasks-display-ul"></ul>
         </section>
 
     </main>
     <footer class="todo-footer">
-        
+
     </footer>
-    
+
     <script src="./todo.js" type="module"></script>
 </body>
+
 </html>
