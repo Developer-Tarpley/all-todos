@@ -47,6 +47,10 @@ taskInput.addEventListener("keydown", (event) => {
 
 let isEditing = false;
 
+function autoSmartCapitalize(str) {
+    return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
+}
+
 /**
  * Display Tasks
  */
@@ -84,7 +88,7 @@ function displayTasks(key) {
             taskEditBtn.innerText = "🖉";
 
             const taskTextSpan = document.createElement("span");
-            taskTextSpan.textContent = task;
+            taskTextSpan.textContent = autoSmartCapitalize(task);
 
             const delButton = document.createElement("span");
             delButton.innerText = "🗑";
