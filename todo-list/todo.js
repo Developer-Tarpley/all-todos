@@ -60,12 +60,13 @@ taskInput.addEventListener("keydown", (event) => {
     else { return; }
 });
 
-let isEditing = false;
 
 function autoSmartCapitalize(str) {
     return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
 };
 
+let isEditing = false;
+let isEditingID = null;
 /**
  * Display Tasks
  */
@@ -119,6 +120,7 @@ function displayTasks(key) {
         selectAllCheckbox.removeAttribute("disabled", false);
         selectAllSpan.style.color = "#000"
     };
+
     displayBoard.appendChild(displayUl);
 };
 
@@ -127,6 +129,18 @@ function displayTasks(key) {
  */
 function handleUpdate(li) {
     const task = li.dataset.id;
+
+    if (isEditing && isEditingID !== task) {
+        isEditingID = task;
+        displayTasks("tasks-today");
+
+        const newLi = document.querySelector(`li[data-id="${task}"]`);
+        handleUpdate(newLi);
+        return;
+    };
+
+    isEditing = true;
+    isEditingID = task;
 
     li.innerHTML = "";
 
@@ -138,16 +152,48 @@ function handleUpdate(li) {
     editInputBtn.innerText = "UPDATE";
     editInputBtn.setAttribute("class", "updates-button")
 
-
+    li.setAttribute("class", "task-li-container");
     li.append(editInput, editInputBtn);
+
+    editInput.focus();
+    editInput.addEventListener("keydown", (event) => {
+        const keyName = event.key;
+
+        if (keyName === 'Escape') {
+            isEditing = false;
+
+            isEditingID = null;
+
+            displayTasks("tasks-today");
+        }
+        else { return; };
+    });
 
     editInputBtn.addEventListener("click", () => {
         crud.update(task, editInput.value, "tasks-today");
 
         isEditing = false;
 
+        isEditingID = null;
+
         displayTasks("tasks-today");
     });
+
+    editInput.addEventListener("keydown", (event) => {
+        const keyName = event.key;
+
+        if (keyName === 'Enter') {
+            crud.update(task, editInput.value, "tasks-today");
+
+            isEditing = false;
+
+            isEditingID = null;
+
+            displayTasks("tasks-today");
+        }
+        else { return; };
+    });
+
 };
 
 /**
@@ -208,8 +254,6 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
         if (event.target.matches(".task-edit-button")) {
-            isEditing = true;
-
             const li = event.target.closest("li");
 
             if (!li) return;

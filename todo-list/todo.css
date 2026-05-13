@@ -54,7 +54,7 @@
     color: hsl(160, 77%, 70%);
     width: 75%;
     padding: 0.5em;
-    margin: 0px auto;
+    margin: 10px auto;
     margin-bottom: 10px;
     background: none;
     border: 1px solid hsla(211, 90%, 76%, 0.3);
@@ -200,13 +200,22 @@
 .updates-input,
 .updates-button {
     padding: 0.5em;
+    width: 100%;
+
 }
+
 .updates-input{
     width: 100%;
     max-width: 748px;
-    margin: 0px auto;
+    margin: 10px auto;
+    box-sizing: border-box;
+    min-width: 0;
 }
-.updates-button{max-width: 576px;}
+
+.updates-button{
+    max-width: 576px;
+    margin: 10px auto;
+}
 
 .delete-task-button:hover {
     color: hsl(0, 100%, 50%);
