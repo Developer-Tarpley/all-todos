@@ -221,6 +221,9 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const selectedTasksDeleteBtn = document.querySelector(".selected-tasks-delete-button");
 
+    const scrollToTop = document.querySelector(".back-to-top");
+
+
     /**
      * Select All
      */
@@ -297,4 +300,16 @@ window.addEventListener("DOMContentLoaded", () => {
         selectAllCheckbox.checked = false;
     });
 
+    scrollToTop.addEventListener("click", () => {
+        return window.scroll({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
 });
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY === 0) {
+        taskInput.focus();
+    };
+})
