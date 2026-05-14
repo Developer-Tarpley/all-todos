@@ -1,3 +1,5 @@
+const isLocal = location.hostname === "localhost";
+
 const tabs = [
     {
         href: "./todo-list/index.htm",
@@ -16,7 +18,10 @@ const tabs = [
         title: "Note Hub"
     },
     {
-        href: "./task-manager/index.htm",
+        // href: "./task-manager/index.htm",
+        href: isLocal 
+            ? "http://localhost:5173/" 
+            : "./task-manager/dist/index.html",
         title: "Manager"
     },
     {
