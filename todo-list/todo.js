@@ -12,11 +12,26 @@ const selectedTasksDeleteBtn = document.querySelector(".selected-tasks-delete-bu
 const displayBoard = document.getElementById("task-display-board");
 const displayUl = document.querySelector(".tasks-display-ul")
 
+// const windowWH = document.querySelector(".w-h");
+
+// window.addEventListener("resize", () => {
+//   const w = window.innerWidth;
+//   const h = window.innerHeight;
+
+//   console.log("Viewport:", w, h);
+
+//   if (windowWH) {
+//     windowWH.innerText = `${w} × ${h}`;
+//   }
+// });
+
+
 
 /**
  * Create Tasks
  */
 addTaskBtn.addEventListener("click", () => {
+    if (taskInput.value === "") return;
     const taskValue = taskInput.value.trim();
 
     crud.create(taskValue, "tasks-today");
@@ -31,7 +46,7 @@ addTaskBtn.addEventListener("click", () => {
 taskInput.addEventListener("keydown", (event) => {
     const keyName = event.key;
 
-    if (keyName === 'Enter') {
+    if (taskInput.value !== "" && keyName === 'Enter') {
         const taskValue = taskInput.value.trim();
 
         crud.create(taskValue, "tasks-today");
@@ -45,12 +60,13 @@ taskInput.addEventListener("keydown", (event) => {
     else { return; }
 });
 
-let isEditing = false;
 
 function autoSmartCapitalize(str) {
     return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
-}
+};
 
+let isEditing = false;
+let isEditingID = null;
 /**
  * Display Tasks
  */
@@ -104,6 +120,7 @@ function displayTasks(key) {
         selectAllCheckbox.removeAttribute("disabled", false);
         selectAllSpan.style.color = "#000"
     };
+
     displayBoard.appendChild(displayUl);
 };
 
@@ -112,6 +129,18 @@ function displayTasks(key) {
  */
 function handleUpdate(li) {
     const task = li.dataset.id;
+
+    if (isEditing && isEditingID !== task) {
+        isEditingID = task;
+        displayTasks("tasks-today");
+
+        const newLi = document.querySelector(`li[data-id="${task}"]`);
+        handleUpdate(newLi);
+        return;
+    };
+
+    isEditing = true;
+    isEditingID = task;
 
     li.innerHTML = "";
 
@@ -123,16 +152,48 @@ function handleUpdate(li) {
     editInputBtn.innerText = "UPDATE";
     editInputBtn.setAttribute("class", "updates-button")
 
-
+    li.setAttribute("class", "task-li-container");
     li.append(editInput, editInputBtn);
+
+    editInput.focus();
+    editInput.addEventListener("keydown", (event) => {
+        const keyName = event.key;
+
+        if (keyName === 'Escape') {
+            isEditing = false;
+
+            isEditingID = null;
+
+            displayTasks("tasks-today");
+        }
+        else { return; };
+    });
 
     editInputBtn.addEventListener("click", () => {
         crud.update(task, editInput.value, "tasks-today");
 
         isEditing = false;
-        
+
+        isEditingID = null;
+
         displayTasks("tasks-today");
     });
+
+    editInput.addEventListener("keydown", (event) => {
+        const keyName = event.key;
+
+        if (keyName === 'Enter') {
+            crud.update(task, editInput.value, "tasks-today");
+
+            isEditing = false;
+
+            isEditingID = null;
+
+            displayTasks("tasks-today");
+        }
+        else { return; };
+    });
+
 };
 
 /**
@@ -142,22 +203,22 @@ function handleRemoveTasks(tasks, key) {
     crud.remove(tasks, "tasks-today");
 
     displayTasks("tasks-today");
-}
+};
 
 /**
  * Inital Load or Referesh
  */
 window.addEventListener("DOMContentLoaded", () => {
     displayTasks("tasks-today");
-    
+
     taskInput.focus();
 
     const displayBoard = document.querySelector(".task-display-board");
 
     const selectAllCheckbox = document.querySelector(".select-all-checkbox");
-    
+
     const liDeleteTaskBtn = document.querySelector(".delete-task-button");
-    
+
     const selectedTasksDeleteBtn = document.querySelector(".selected-tasks-delete-button");
 
     /**
@@ -193,20 +254,18 @@ window.addEventListener("DOMContentLoaded", () => {
         };
 
         if (event.target.matches(".task-edit-button")) {
-            isEditing = true;
-          
             const li = event.target.closest("li");
-          
+
             if (!li) return;
-          
+
             handleUpdate(li);
         };
 
         if (event.target.matches(".delete-task-button")) {
             isEditing = false;
-          
+
             const li = event.target.closest("li");
-          
+
             if (!li) return;
 
             handleRemoveTasks(li.dataset.id)
@@ -234,7 +293,7 @@ window.addEventListener("DOMContentLoaded", () => {
         handleRemoveTasks(selectedIds);
 
         displayTasks("tasks-today");
-        
+
         selectAllCheckbox.checked = false;
     });
 
