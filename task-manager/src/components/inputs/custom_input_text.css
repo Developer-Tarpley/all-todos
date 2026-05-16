@@ -1,0 +1,10 @@
+
+.custom-input{
+    background: var(--bg-textbox-dark);
+    color: #fff;
+    font-size: 1rem;
+    margin: 0px auto;
+    max-width: 768px;
+    resize: none;
+    outline-offset:2px 2px 10px rgb(235, 33, 67);
+}

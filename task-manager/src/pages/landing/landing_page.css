@@ -1,0 +1,31 @@
+.landing-page-container{
+    background: hsl(0, 0%, 95%);
+    height: 100lvh;
+    padding: 1em;
+}
+
+/**
+* Header Styles
+*/
+.landing-header{
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+/**
+* Main Content Styles
+*/
+.landing-content{
+
+}
+
+/**
+* Footer Styles
+*/
+.landing-footer{
+
+}
+
+.copywright-span{
+
+}
