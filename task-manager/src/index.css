@@ -1,5 +1,6 @@
 :root{
-    --bg-textbox-dark : hsla(248, 74%, 17%, 0.8);
+    --bg-textbox-dark : hsl(203, 46%, 36%);
+    /* --bg-textbox-dark : hsla(248, 74%, 17%, 0.8); */
 }
 
 *{
