@@ -1,18 +1,21 @@
-import { useState } from "react";
 import "./custom_input_text.css";
+import { useEffect, useState } from "react";
+import Use_Tasks from "../../state/Use_Tasks";
 
-export default function Custom_Input() {
-    let [task, setTask] = useState("");
+export default function Custom_Input({addTask}) {
+    const [task, setTask] = useState("");
 
     const handleAddTask = (event) => {
         event.preventDefault();
-        console.log("current task", task)
+        console.log("current task", task);
+        addTask(task);
         setTask("");
     };
-
+    console.log("after", task)
+    
     const handleTaskChange = (task) => {
         setTask(task);
-    }
+    };
 
     return <form onSubmit={handleAddTask} className="add-task-form">
         <label htmlFor="add-task"></label>
@@ -21,9 +24,9 @@ export default function Custom_Input() {
             className="add-task-input"
             name="add-task"
             placeholder="Type your task here..."
-            value={task.value}
+            value={task}
             autoFocus
-            onChange={(event)=>handleTaskChange(event.target.value)}
+            onChange={(event) => handleTaskChange(event.target.value)}
         />
 
         <button
@@ -32,7 +35,7 @@ export default function Custom_Input() {
         >Add Task</button>
     </form>
 
-}
+};
 
 {/* <textarea
     name="task"
