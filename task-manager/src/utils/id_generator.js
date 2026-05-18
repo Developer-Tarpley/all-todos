@@ -19,7 +19,6 @@ export const Create_IDs = () => {
         id += charArray[index];
         idLength--
     };
-    console.log(id);
     return id;
 }
 

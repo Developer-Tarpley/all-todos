@@ -1,11 +1,23 @@
 import "./display_tasks.css";
-import ID from "../../utils/id_generator.js"
+import Use_Tasks from "../../state/Use_Tasks";
+import { useEffect, useState } from "react";
 
-export default function(){
-    console.log(ID.Create_IDs())
+export default function ({tasks}) {
+      useEffect(()=>{
+        console.log("readTask updated!")
+        console.log("Tasks updated!" ,tasks)
+    },[tasks])
+
     return <div>
         <h2>Current Plan's</h2>
 
         {/* display tasks here */}
+        <ul className="task-list">
+            {
+             tasks.map(task=><li key={task.id} className="list-item">
+                {task.text}
+             </li>)
+            }
+        </ul>
     </div>
 }
