@@ -7,18 +7,12 @@ export default function Custom_Input({addTask}) {
 
     const handleAddTask = (event) => {
         event.preventDefault();
-        console.log("current task", task);
         addTask(task);
         setTask("");
     };
-    console.log("after", task)
-    
-    const handleTaskChange = (task) => {
-        setTask(task);
-    };
 
     return <form onSubmit={handleAddTask} className="add-task-form">
-        <label htmlFor="add-task"></label>
+        <label htmlFor="add-task">Add Task input</label>
         <input
             type="text"
             className="add-task-input"
@@ -26,7 +20,7 @@ export default function Custom_Input({addTask}) {
             placeholder="Type your task here..."
             value={task}
             autoFocus
-            onChange={(event) => handleTaskChange(event.target.value)}
+            onChange={(event) => setTask(event.target.value)}
         />
 
         <button

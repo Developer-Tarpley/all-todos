@@ -5,8 +5,6 @@ function App() {
   return <div className='app-container'>
     <Landing_Page/>
   </div>
-
 };
-
 
 export default App;
