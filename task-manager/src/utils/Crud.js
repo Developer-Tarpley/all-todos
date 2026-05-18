@@ -4,7 +4,6 @@ export const crud = {
         return [...tasks, newtask];
     },
     read: (tasks) => {
-        console.log("tasks from storage", tasks)
         return tasks;
     },
     update: (tasks, id, updates) => {
