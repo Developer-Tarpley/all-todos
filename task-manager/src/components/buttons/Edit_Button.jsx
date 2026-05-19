@@ -1,8 +1,9 @@
-import "./edit_button";
+import "./edit_button.css";
+import { LiaEdit } from "react-icons/lia";
 
-export default function Edit_Button(){
+export default function Edit_Button() {
     return <>
-        <button className="edit-button">edit</button>
+        <LiaEdit className="edit-task-button" />
     </>
 
 }

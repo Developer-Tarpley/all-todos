@@ -1,7 +1,8 @@
-import "./delete_button";
+import "./delete_button.css";
+import { FaTrashCan } from "react-icons/fa6";
 
-export default function Delete_Button(){
+export default function Delete_Button() {
     return <>
-        <button className="delete-button">remove</button>
+        <FaTrashCan className="remove-task-button" />
     </>
 }
