@@ -1,0 +1,11 @@
+.edit-task-button{
+    margin: 0px 5px;
+    color: #bbb;
+    height: 100%;
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+.edit-task-button:hover{
+    cursor: pointer;
+    color: hsl(203, 50%, 59%);
+}

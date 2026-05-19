@@ -35,7 +35,7 @@
         0px 2px 6px hsl(203, 46%, 36%);
 }
 
-.container:hover input~.checkmark {
+.container input~.checkmark:hover {
     background-color: hsl(0, 0%, 80%);
 }
 
