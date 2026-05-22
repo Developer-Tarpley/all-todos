@@ -7,17 +7,16 @@ export const crud = {
         return tasks;
     },
     update: (tasks, id, updates) => {
-        return (
-            tasks.map(task=>{
-                task.id === id ? [...tasks, ...updates] : task;
-            })
+        return tasks.map(task =>
+            task.id === id ?
+                { ...task, ...updates } : task
         )
     },
     delete: (tasks, id) => {
-        return(
-            tasks.filter(task=>task.id !== id)
+        return (
+            tasks.filter(task => task.id !== id)
         )
-    }
+    },
 }
 
 /**
