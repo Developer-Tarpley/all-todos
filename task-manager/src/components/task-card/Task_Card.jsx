@@ -2,22 +2,72 @@ import "./task_card.css";
 import Delete_Button from "../buttons/Delete_Button";
 import Edit_Button from "../buttons/Edit_Button";
 import Custom_Checkbox from "../inputs/Custom_Checkbox"
+import { useEffect, useState } from "react";
 
-export default function Task_Card({ tasks }) {
-   return <ul className="task-list">
+
+export default function Task_Card({ tasks, updateTask }) {
+    const [editMode, setEditMode] = useState(false);
+    const [editId, setEditId] = useState(null);
+    const [taskUpdate, setTaskUpdate] = useState("")
+
+    const handleUpdate = (event) => {
+        event.preventDefault();
+
+        const updates = { text: taskUpdate }
+        
+        updateTask(editId, updates)
+        setEditMode(false)
+    }
+
+    return <ul
+        className="task-list"
+    >
         {
+
             tasks.map(task =>
-                <div key={task.id} className="task-card">
-                    <div className="card-button-container">
-                        <Custom_Checkbox />
-                        <Edit_Button />
-                        <Delete_Button />
-                    </div>
-                    <li className="list-item">
-                        {task.text}
+                
+                editMode && task.id === editId ? // do this
+                    <li
+                        key={task.id}
+                        data-id={task.id}
+                        className="task-card"
+                    >
+                        <div className="card-button-container">
+                            <Custom_Checkbox />
+                            <Edit_Button
+                                editMode={editMode}
+                                setEditMode={setEditMode}
+                                setEditId={setEditId}
+                                taskId={task.id}
+                            />
+                            <Delete_Button />
+                        </div>
+                        <form onSubmit={(event) => handleUpdate(event)}>
+                            <input onChange={(event) => setTaskUpdate(event.target.value)} type="text" defaultValue={task.text} />
+                            <button type="submit">save</button>
+                        </form>
                     </li>
-                </div>
-            )
+
+                    : // else do this
+                    
+                    <li
+                        key={task.id}
+                        data-id={task.id}
+                        className="task-card"
+                    >
+                        <div className="card-button-container">
+                            <Custom_Checkbox />
+                            <Edit_Button
+                                setEditMode={setEditMode}
+                                setEditId={setEditId}
+                                taskId={task.id}
+                            />
+                            <Delete_Button />
+                        </div>
+                        <span className="list-item">
+                            {task.text}
+                        </span>
+                    </li>)
         }
     </ul>
 
