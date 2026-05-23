@@ -19,17 +19,22 @@ export default function Use_Tasks() {
             text: text,
             completed: false,
         };
-        commit((prev) => crud.create(tasks, newTask));
-    }, [tasks, commit]);
+        commit((prev) => crud.create(prev, newTask));
+    }, [commit]);
 
     const updateTask = useCallback((id, updates) => {
-        commit(prev => crud.update(prev, id, updates));
+        commit((prev) => crud.update(prev, id, updates));
     }, [commit]);
+
+    const deleteTask = useCallback((id) => {
+        commit((prev) => crud.delete(prev, id))
+    }, [commit])
 
 
     return {
         tasks,
         addTask,
         updateTask,
+        deleteTask
     }
 }

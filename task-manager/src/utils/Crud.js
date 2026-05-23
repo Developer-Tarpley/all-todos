@@ -13,9 +13,7 @@ export const crud = {
         )
     },
     delete: (tasks, id) => {
-        return (
-            tasks.filter(task => task.id !== id)
-        )
+        return tasks.filter(task => task.id !== id);
     },
 }
 

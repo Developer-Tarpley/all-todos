@@ -5,7 +5,7 @@ import Custom_Checkbox from "../inputs/Custom_Checkbox"
 import { useEffect, useState } from "react";
 
 
-export default function Task_Card({ tasks, updateTask }) {
+export default function Task_Card({ tasks, updateTask, deleteTask }) {
     const [editMode, setEditMode] = useState(false);
     const [editId, setEditId] = useState(null);
     const [taskUpdate, setTaskUpdate] = useState("")
@@ -19,9 +19,11 @@ export default function Task_Card({ tasks, updateTask }) {
         setEditMode(false)
     }
 
+
     return <ul
         className="task-list"
     >
+        { tasks.length < 1 && <p>Currently No Plan's Created</p> }
         {
 
             tasks.map(task =>
@@ -40,7 +42,7 @@ export default function Task_Card({ tasks, updateTask }) {
                                 setEditId={setEditId}
                                 taskId={task.id}
                             />
-                            <Delete_Button />
+                            <Delete_Button deleteTask={deleteTask} />
                         </div>
                         <form onSubmit={(event) => handleUpdate(event)}>
                             <input onChange={(event) => setTaskUpdate(event.target.value)} type="text" defaultValue={task.text} />
@@ -62,7 +64,7 @@ export default function Task_Card({ tasks, updateTask }) {
                                 setEditId={setEditId}
                                 taskId={task.id}
                             />
-                            <Delete_Button />
+                            <Delete_Button deleteTask={deleteTask} />
                         </div>
                         <span className="list-item">
                             {task.text}
