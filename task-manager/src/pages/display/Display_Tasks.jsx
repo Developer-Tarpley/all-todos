@@ -7,6 +7,7 @@ import Task_Card from "../../components/task-card/Task_Card";
 export default function ({
     tasks,
     updateTask,
+    deleteTask
 }) {
 
     useEffect(() => {
@@ -15,11 +16,12 @@ export default function ({
     return <>
         <h2 style={{
             margin: "10px"
-        }}>Current Plan's</h2>
+        }}>Plan's To Accomplish</h2>
 
         <Task_Card
             tasks={tasks}
             updateTask={updateTask}
+            deleteTask={deleteTask}
         />
     </>
 }
