@@ -2,12 +2,17 @@ import "./custom_input_text.css";
 import { useEffect, useState } from "react";
 import Use_Tasks from "../../state/Use_Tasks";
 
-export default function Custom_Input({addTask}) {
+export default function Custom_Input({ addTask }) {
     const [task, setTask] = useState("");
 
+    function autoSmartCapitalize(str) {
+        return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
+    };
+
     const handleAddTask = (event) => {
+        if (task === "") return;
         event.preventDefault();
-        addTask(task);
+        addTask(autoSmartCapitalize(task.trim()));
         setTask("");
     };
 
