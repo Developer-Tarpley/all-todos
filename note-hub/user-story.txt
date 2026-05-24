@@ -1,0 +1,1863 @@
+Absolutely, Corey — here’s a **real‑world, company‑grade user story set** for your **V2 Note Hub** project.  
+This is written exactly like something you'd see in a real product team: clear acceptance criteria, business justification, and engineering‑ready tasks.
+
+I’m giving you **one full epic**, **four user stories**, and **engineering tasks** for each — the way a real PM would hand it to a dev team.
+
+---
+
+# ⭐ EPIC: Note Hub V2 — “Unified Knowledge Workspace”
+**Goal:** Transform Note Hub from a simple note‑taking tool into a structured, searchable, tag‑driven knowledge hub for internal teams.
+
+**Business Value:**  
+Teams currently lose time searching Slack, email, and scattered docs. Note Hub V2 centralizes knowledge, reduces duplication, and improves onboarding speed.
+
+---
+
+# ⭐ USER STORY 1 — Create & Edit Notes (Core Editor Upgrade)
+
+**As a** Product Designer  
+**I want** to create and edit notes with a clean, distraction‑free editor  
+**So that** I can document ideas quickly without switching tools.
+
+### Acceptance Criteria
+- User can create a new note from the dashboard  
+- Editor supports: title, body text, bold, italic, bullet list  
+- Auto‑save triggers on every keystroke  
+- Notes persist after refresh  
+- Editor loads in < 200ms
+
+### Engineering Tasks
+- Implement `useNotes()` CRUD hook (create, update, delete, list)  
+- Add auto‑save debounce (300ms)  
+- Build `<NoteEditor />` with controlled inputs  
+- Persist notes to local storage (V2.0)  
+- Add error boundary for failed saves  
+
+---
+
+# ⭐ USER STORY 2 — Tagging System (Multi‑Tag Support)
+
+**As a** Software Engineer  
+**I want** to tag notes with multiple labels  
+**So that** I can organize technical docs by topic.
+
+### Acceptance Criteria
+- User can add/remove tags from a note  
+- Tags autocomplete from existing tag list  
+- Tags persist with the note  
+- Tag UI supports keyboard navigation  
+- Notes can have unlimited tags
+
+### Engineering Tasks
+- Add `tags: string[]` to note schema  
+- Create `<TagInput />` component  
+- Implement tag autocomplete dropdown  
+- Update CRUD to support tag updates  
+- Add tag pill UI with remove button  
+
+---
+
+# ⭐ USER STORY 3 — Global Search (Title + Body + Tags)
+
+**As a** Customer Support Lead  
+**I want** to search across all notes  
+**So that** I can quickly find troubleshooting steps.
+
+### Acceptance Criteria
+- Search bar filters notes in real time  
+- Search matches: title, body, tags  
+- Highlight matched text in results  
+- Search works with 1000+ notes  
+- No noticeable lag (< 50ms)
+
+### Engineering Tasks
+- Implement `useSearch(notes)` hook  
+- Add fuzzy search (Fuse.js‑style logic)  
+- Build `<SearchBar />` with debounced input  
+- Add highlight logic for matched terms  
+- Optimize search with memoization  
+
+---
+
+# ⭐ USER STORY 4 — Note Collections (Folders / Groups)
+
+**As a** Project Manager  
+**I want** to group notes into collections  
+**So that** I can organize project documentation.
+
+### Acceptance Criteria
+- User can create collections  
+- Notes can be assigned to a collection  
+- Collections appear in sidebar  
+- Clicking a collection filters notes  
+- Empty collections show placeholder state
+
+### Engineering Tasks
+- Add `collectionId` to note schema  
+- Build `<CollectionSidebar />`  
+- Add CRUD for collections  
+- Implement drag‑and‑drop note → collection  
+- Add empty state UI  
+
+---
+
+# ⭐ USER STORY 5 — Version History (Lightweight)
+
+**As a** Developer  
+**I want** to see previous versions of a note  
+**So that** I can restore content if I overwrite something.
+
+### Acceptance Criteria
+- Every save creates a version snapshot  
+- User can view previous versions  
+- User can restore a version  
+- Version list shows timestamp + diff preview  
+- Max 20 versions per note
+
+### Engineering Tasks
+- Add `versions[]` to note schema  
+- Implement snapshot creation on save  
+- Build `<VersionHistory />` panel  
+- Add diff preview logic  
+- Add “Restore Version” action  
+
+---
+
+# ⭐ BONUS: How a PM would pitch this to leadership
+
+> “Note Hub V2 reduces knowledge fragmentation by centralizing documentation, adding search, tagging, and collections. This improves onboarding time, reduces repeated questions, and gives teams a single source of truth.”
+
+---
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Perfect — let’s turn **Sprint 1** into a real, company‑grade execution plan.  
+This is exactly what a senior engineer or tech lead would hand off to the team at the start of the sprint.
+
+I’ll give you:
+
+- The sprint goal  
+- The deliverables  
+- The breakdown of work  
+- The acceptance criteria  
+- The engineering tasks  
+- The risks + mitigations  
+- The definition of done  
+
+This is the real‑world version.
+
+---
+
+# ⭐ **Sprint 1 — Core Note Editor + Persistence**
+
+### **Sprint Goal**
+Deliver the foundational note‑taking experience: users can create, edit, and auto‑save notes in a clean, responsive editor with persistent storage.
+
+This sprint establishes the core data model and UI that all future features (tags, search, collections, version history) will build on.
+
+---
+
+# ⭐ **Sprint 1 Deliverables**
+By the end of Sprint 1, the product should support:
+
+- Creating a new note  
+- Editing note title + body  
+- Auto‑saving changes  
+- Persisting notes locally  
+- Listing notes in a sidebar or dashboard  
+- Selecting a note to edit  
+- Clean, minimal UI (V2 visual style)  
+
+This is the “walking skeleton” of Note Hub V2.
+
+---
+
+# ⭐ **Sprint 1 User Stories Included**
+From the earlier epic:
+
+### ✔ USER STORY 1 — Create & Edit Notes  
+This is the only story included in Sprint 1.
+
+Everything else (tags, search, collections, version history) comes in later sprints.
+
+---
+
+# ⭐ **Sprint 1 Acceptance Criteria**
+
+### **1. Create Note**
+- Clicking “New Note” creates a blank note with:
+  - `id`
+  - `title: ""`
+  - `body: ""`
+  - `createdAt`
+  - `updatedAt`
+
+### **2. Edit Note**
+- User can edit title and body in a controlled editor  
+- Editor updates state on every keystroke  
+- Auto‑save triggers within 300ms of typing  
+
+### **3. Persistence**
+- Notes persist across refresh  
+- Notes load within 200ms  
+- No data loss during rapid typing  
+
+### **4. UI**
+- Editor layout is responsive  
+- Sidebar lists all notes  
+- Selecting a note loads it into the editor  
+
+### **5. Error Handling**
+- If persistence fails, user sees a non‑blocking error message  
+- Editor never crashes  
+
+---
+
+# ⭐ **Sprint 1 Engineering Tasks (Real‑World Breakdown)**
+
+## **1. Data Model + Hook Architecture**
+- Define `Note` type/interface  
+- Implement `useNotes()` hook  
+  - `createNote()`  
+  - `updateNote()`  
+  - `deleteNote()`  
+  - `getNoteById()`  
+  - `listNotes()`  
+- Add timestamps (`createdAt`, `updatedAt`)  
+- Add auto‑save debounce logic  
+
+## **2. Persistence Layer**
+- Implement local storage adapter  
+- Add serialization/deserialization  
+- Add migration layer (future‑proofing)  
+- Add error boundary for failed loads  
+
+## **3. UI Components**
+- `<NoteEditor />`  
+  - Title input  
+  - Body textarea  
+  - Auto‑save indicator  
+- `<NotesSidebar />`  
+  - List of notes  
+  - “New Note” button  
+  - Active note highlighting  
+- `<AppLayout />`  
+  - Sidebar + Editor split view  
+
+## **4. State Management**
+- Wire `useNotes()` into the app root  
+- Ensure editor receives the active note  
+- Ensure updates propagate correctly  
+
+## **5. QA + Testing**
+- Manual test matrix  
+- Unit tests for CRUD  
+- Integration test for auto‑save  
+- Load test with 500 notes  
+
+---
+
+# ⭐ **Sprint Risks + Mitigations**
+
+### **Risk 1 — Auto‑save causes performance issues**
+Mitigation:  
+Use a 300ms debounce + memoized updates.
+
+### **Risk 2 — Local storage size limits**
+Mitigation:  
+Compress note bodies (optional future task).
+
+### **Risk 3 — Editor re-renders too often**
+Mitigation:  
+Split editor into memoized subcomponents.
+
+---
+
+# ⭐ **Definition of Done (DoD)**
+
+A story is “done” when:
+
+- All acceptance criteria are met  
+- Code is reviewed and merged  
+- No console errors  
+- All tests pass  
+- UI matches design spec  
+- Notes persist across refresh  
+- Editor loads in < 200ms  
+- Auto‑save works reliably  
+
+This is exactly how a real team signs off work.
+
+---
+
+App
+│
+├── AppLayout
+│   ├── NotesSidebar
+│   │   ├── SidebarHeader
+│   │   │   └── NewNoteButton
+│   │   ├── NotesList
+│   │   │   ├── NoteListItem (repeated)
+│   │   │   └── EmptyState (if no notes)
+│   │   └── SidebarFooter (optional)
+│   │
+│   └── NoteEditor
+│       ├── NoteTitleInput
+│       ├── NoteBodyEditor
+│       ├── AutoSaveIndicator
+│       └── EditorEmptyState (if no note selected)
+│
+└── GlobalErrorBoundary
+
+
+1. App
+Root of the application
+
+Initializes useNotes()
+
+Provides notes + actions via context or props
+
+Handles routing (if any)
+
+2. AppLayout
+Defines the two‑pane layout
+
+Left: sidebar
+
+Right: editor
+
+Handles responsive behavior (mobile collapse, etc.)
+
+3. NotesSidebar
+Purpose: list all notes + allow creating new ones.
+
+Contains:
+
+SidebarHeader
+Title (“Notes”)
+
+New note button
+
+NewNoteButton
+Calls createNote()
+
+Immediately selects the new note
+
+NotesList
+Maps through notes
+
+Renders NoteListItem
+
+Handles active note highlighting
+
+NoteListItem
+Displays note title + preview
+
+Click → loads note into editor
+
+EmptyState
+Shown when no notes exist
+
+CTA: “Create your first note”
+
+4. NoteEditor
+Purpose: edit the currently selected note.
+
+Contains:
+
+NoteTitleInput
+Controlled input
+
+Updates note title via updateNote()
+
+NoteBodyEditor
+Controlled textarea
+
+Updates note body via updateNote()
+
+Triggers auto‑save debounce
+
+AutoSaveIndicator
+Shows:
+
+“Saving…”
+
+“Saved”
+
+“Error saving”
+
+EditorEmptyState
+Shown when no note is selected
+
+Encourages user to pick or create a note
+
+5. GlobalErrorBoundary
+Catches unexpected errors
+
+Prevents editor from crashing
+
+Shows fallback UI
+
+useNotes()
+   │
+   ├── notes[]          → NotesSidebar
+   ├── activeNoteId     → NotesSidebar + NoteEditor
+   ├── createNote()     → NewNoteButton
+   ├── updateNote()     → NoteTitleInput + NoteBodyEditor
+   ├── deleteNote()     → (Sprint 2+)
+   └── selectNote()     → NoteListItem
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+src/
+│
+├── app/
+│   ├── App.jsx
+│   ├── AppLayout.jsx
+│   └── index.css
+│
+├── components/
+│   ├── editor/
+│   │   ├── NoteEditor.jsx
+│   │   ├── NoteTitleInput.jsx
+│   │   ├── NoteBodyEditor.jsx
+│   │   ├── AutoSaveIndicator.jsx
+│   │   └── EditorEmptyState.jsx
+│   │
+│   ├── sidebar/
+│   │   ├── NotesSidebar.jsx
+│   │   ├── SidebarHeader.jsx
+│   │   ├── NewNoteButton.jsx
+│   │   ├── NotesList.jsx
+│   │   ├── NoteListItem.jsx
+│   │   └── EmptyState.jsx
+│   │
+│   └── common/
+│       ├── Button.jsx
+│       ├── Icon.jsx
+│       └── Spinner.jsx
+│
+├── hooks/
+│   ├── useNotes.js
+│   ├── useAutoSave.js
+│   └── useDebounce.js
+│
+├── state/
+│   ├── NotesContext.jsx
+│   └── NotesProvider.jsx
+│
+├── utils/
+│   ├── storage/
+│   │   ├── localStorageAdapter.js
+│   │   └── migrations.js
+│   ├── generateId.js
+│   └── timestamps.js
+│
+├── types/
+│   └── note.js
+│
+├── errors/
+│   └── GlobalErrorBoundary.jsx
+│
+└── index.js
+1. app/
+Holds the root layout and global styling.
+This keeps the top‑level clean and predictable.
+
+2. components/
+Organized by feature domain:
+
+editor/ → everything related to editing a note
+
+sidebar/ → everything related to listing/selecting notes
+
+common/ → reusable UI primitives
+
+This is how real design systems evolve.
+
+3. hooks/
+Your custom logic lives here:
+
+useNotes → CRUD + persistence
+
+useAutoSave → debounced saving
+
+useDebounce → generic debounce utility
+
+This keeps business logic out of components.
+
+4. state/
+Context provider + reducer (if needed later).
+This is where global state lives.
+
+5. utils/
+Pure functions, no React.
+Storage adapters, ID generation, timestamps, migrations.
+
+6. types/
+Your note schema lives here.
+Future: tag schema, collection schema, version schema.
+
+7. errors/
+Global error boundary to prevent editor crashes.
+
+app/
+Bootstraps the app
+
+Provides layout
+
+Injects NotesProvider
+
+components/editor/
+Title input
+
+Body editor
+
+Auto‑save indicator
+
+Empty state
+
+components/sidebar/
+New note button
+
+List of notes
+
+Active note highlighting
+
+Empty state
+
+hooks/
+Core logic
+
+No UI
+
+Reusable across components
+
+state/
+Context
+
+Provider
+
+Future: reducers, actions
+
+utils/
+Persistence
+
+ID generation
+
+Timestamps
+
+Migrations
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Great — the **next step after defining the Sprint 1 file structure** is to lock in the **Sprint 1 Technical Architecture**.  
+This is the blueprint that explains *how everything talks to everything else* — the data flow, the hooks, the persistence layer, and the UI.
+
+This is exactly what a senior engineer would produce before coding begins.
+
+---
+
+# ⭐ **Sprint 1 Technical Architecture (Note Hub V2)**  
+This architecture covers:
+
+- Data model  
+- State flow  
+- Hook responsibilities  
+- Persistence layer  
+- Component communication  
+- Auto‑save mechanism  
+- Error handling  
+
+This is the backbone of Sprint 1.
+
+---
+
+# ⭐ 1. **Data Model (Note Schema)**
+
+A note in Sprint 1 has:
+
+```js
+{
+  id: string,
+  title: string,
+  body: string,
+  createdAt: number,
+  updatedAt: number
+}
+```
+
+This is intentionally minimal — tags, collections, versions come later.
+
+---
+
+# ⭐ 2. **State Management Architecture**
+
+### **NotesProvider** (global state)
+Holds:
+
+- `notes` (array)
+- `activeNoteId`
+- actions:
+  - `createNote`
+  - `updateNote`
+  - `deleteNote` (Sprint 2)
+  - `selectNote`
+
+### Why global?
+Because:
+
+- Sidebar needs the list  
+- Editor needs the active note  
+- Future features (search, tags, collections) depend on global access  
+
+This avoids prop drilling and keeps the app scalable.
+
+---
+
+# ⭐ 3. **useNotes() Hook (Core Business Logic)**
+
+This hook is the heart of Sprint 1.
+
+### Responsibilities:
+- CRUD operations  
+- Auto‑save integration  
+- Persistence (via adapter)  
+- Timestamp updates  
+- Selecting active note  
+
+### Internal structure:
+
+```js
+function useNotes() {
+  const [notes, setNotes] = useState([]);
+  const [activeNoteId, setActiveNoteId] = useState(null);
+
+  const createNote = () => { ... }
+  const updateNote = (id, updates) => { ... }
+  const selectNote = (id) => { ... }
+
+  useEffect(() => persist(notes), [notes]);
+
+  return { notes, activeNoteId, createNote, updateNote, selectNote };
+}
+```
+
+This keeps all note logic in one place.
+
+---
+
+# ⭐ 4. **Persistence Layer (localStorageAdapter)**
+
+### Responsibilities:
+- Save notes to localStorage  
+- Load notes on startup  
+- Handle JSON parsing errors  
+- Provide migration hooks for future versions  
+
+### API:
+
+```js
+loadNotes(): Note[]
+saveNotes(notes: Note[]): void
+```
+
+### Why an adapter?
+Because later you can swap:
+
+- localStorage → IndexedDB  
+- IndexedDB → Cloud sync  
+- Cloud sync → Multi‑device sync  
+
+Without touching the UI.
+
+---
+
+# ⭐ 5. **Auto‑Save Architecture**
+
+### useAutoSave(note, updateNote)
+- Watches title/body changes  
+- Debounces updates (300ms)  
+- Calls `updateNote(id, { title, body })`  
+- Updates `updatedAt` timestamp  
+- Triggers AutoSaveIndicator state  
+
+### AutoSaveIndicator states:
+- `"idle"`
+- `"saving"`
+- `"saved"`
+- `"error"`
+
+This gives you a smooth, modern UX.
+
+---
+
+# ⭐ 6. **Component Communication Flow**
+
+### Sidebar → Editor
+User clicks a note:
+
+```
+NoteListItem → selectNote(id)
+```
+
+Editor receives:
+
+```
+activeNote = notes.find(n => n.id === activeNoteId)
+```
+
+### Editor → useNotes
+User types:
+
+```
+NoteTitleInput → updateNote(id, { title })
+NoteBodyEditor → updateNote(id, { body })
+```
+
+### useNotes → Persistence
+Whenever notes change:
+
+```
+useEffect(() => saveNotes(notes), [notes])
+```
+
+### Persistence → App
+On load:
+
+```
+const initialNotes = loadNotes()
+```
+
+---
+
+# ⭐ 7. **Error Handling Architecture**
+
+### GlobalErrorBoundary
+Catches:
+- Rendering errors  
+- Editor crashes  
+- Unexpected exceptions  
+
+### Persistence Errors
+If `loadNotes()` fails:
+- Show fallback UI  
+- Reset notes to empty array  
+
+If `saveNotes()` fails:
+- AutoSaveIndicator shows `"error"`  
+- Editor continues working (non‑blocking)
+
+---
+
+# ⭐ 8. **Performance Considerations**
+
+### Memoization
+- Memoize `NoteListItem`  
+- Memoize `NoteEditor` subcomponents  
+- Prevent full re-renders on every keystroke  
+
+### Debounce
+- Auto‑save uses 300ms debounce  
+- Prevents excessive writes  
+
+### Lazy Loading
+- Load notes before rendering editor  
+- Show skeleton UI if needed  
+
+---
+
+# ⭐ 9. **Architecture Diagram (High-Level)**
+
+```
+          ┌──────────────────────┐
+          │    NotesProvider     │
+          │  notes, activeNoteId │
+          │ create/update/select │
+          └──────────┬───────────┘
+                     │
+        ┌────────────┴────────────┐
+        │                           │
+┌───────────────┐         ┌────────────────┐
+│ NotesSidebar   │         │  NoteEditor    │
+│ list, new note │         │ title, body    │
+└───────┬────────┘         └───────┬────────┘
+        │                            │
+        ▼                            ▼
+selectNote(id)             updateNote(id, updates)
+        │                            │
+        └──────────────┬─────────────┘
+                       ▼
+              ┌──────────────────┐
+              │ useNotes() Hook  │
+              │ CRUD + autosave  │
+              └─────────┬────────┘
+                        ▼
+              ┌──────────────────┐
+              │ Persistence Layer │
+              │ localStorage      │
+              └──────────────────┘
+```
+
+---
+
+# ⭐ **Your next step**
+Now that you have:
+
+- Sprint 1 Component Tree  
+- Sprint 1 File Structure  
+- Sprint 1 Technical Architecture  
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Excellent — since you chose **A (learn by building on top of a real architecture)**, the next step is to give you the **Sprint 1 Starter Code**, but in a way that *teaches you the architecture as you read it*, not just dumps files.
+
+This is how senior engineers mentor juniors:  
+they give you the skeleton, then walk you through *why* each piece exists.
+
+Below is the **first layer** of the starter code — the foundational pieces you need before building UI.
+
+I’m giving you:
+
+- NotesProvider (global state)
+- useNotes (core logic)
+- localStorageAdapter (persistence)
+- generateId + timestamps (utils)
+- App.jsx + AppLayout.jsx (root structure)
+
+This is the “engine room” of Note Hub V2.
+
+Once this is in place, you’ll build the UI on top of it.
+
+---
+
+# ⭐ 1. `src/state/NotesContext.jsx`
+
+```jsx
+import { createContext } from "react";
+
+export const NotesContext = createContext(null);
+```
+
+This is the global context that everything plugs into.
+
+---
+
+# ⭐ 2. `src/state/NotesProvider.jsx`
+
+```jsx
+import { useState, useEffect, useCallback } from "react";
+import { NotesContext } from "./NotesContext";
+import { loadNotes, saveNotes } from "../utils/storage/localStorageAdapter";
+import { generateId } from "../utils/generateId";
+import { now } from "../utils/timestamps";
+
+export default function NotesProvider({ children }) {
+  const [notes, setNotes] = useState(() => loadNotes());
+  const [activeNoteId, setActiveNoteId] = useState(null);
+
+  const createNote = useCallback(() => {
+    const id = generateId();
+    const newNote = {
+      id,
+      title: "",
+      body: "",
+      createdAt: now(),
+      updatedAt: now()
+    };
+
+    setNotes(prev => [newNote, ...prev]);
+    setActiveNoteId(id);
+  }, []);
+
+  const updateNote = useCallback((id, updates) => {
+    setNotes(prev =>
+      prev.map(note =>
+        note.id === id
+          ? { ...note, ...updates, updatedAt: now() }
+          : note
+      )
+    );
+  }, []);
+
+  const selectNote = useCallback(id => {
+    setActiveNoteId(id);
+  }, []);
+
+  useEffect(() => {
+    saveNotes(notes);
+  }, [notes]);
+
+  return (
+    <NotesContext.Provider
+      value={{
+        notes,
+        activeNoteId,
+        createNote,
+        updateNote,
+        selectNote
+      }}
+    >
+      {children}
+    </NotesContext.Provider>
+  );
+}
+```
+
+This is the **heart** of Sprint 1.
+
+You now have:
+
+- global notes state  
+- createNote  
+- updateNote  
+- selectNote  
+- persistence  
+- timestamps  
+
+This is the real architecture.
+
+---
+
+# ⭐ 3. `src/hooks/useNotes.js`
+
+```jsx
+import { useContext } from "react";
+import { NotesContext } from "../state/NotesContext";
+
+export function useNotes() {
+  const ctx = useContext(NotesContext);
+  if (!ctx) throw new Error("useNotes must be used inside NotesProvider");
+  return ctx;
+}
+```
+
+This gives you a clean API:
+
+```js
+const { notes, activeNoteId, createNote, updateNote, selectNote } = useNotes();
+```
+
+---
+
+# ⭐ 4. `src/utils/storage/localStorageAdapter.js`
+
+```jsx
+const KEY = "notehub_v2_notes";
+
+export function loadNotes() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (!raw) return [];
+    return JSON.parse(raw);
+  } catch {
+    return [];
+  }
+}
+
+export function saveNotes(notes) {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(notes));
+  } catch {
+    // non-blocking error
+  }
+}
+```
+
+This is intentionally simple — you’ll expand it later.
+
+---
+
+# ⭐ 5. `src/utils/generateId.js`
+
+```js
+export function generateId() {
+  return crypto.randomUUID();
+}
+```
+
+---
+
+# ⭐ 6. `src/utils/timestamps.js`
+
+```js
+export function now() {
+  return Date.now();
+}
+```
+
+---
+
+# ⭐ 7. `src/app/App.jsx`
+
+```jsx
+import NotesProvider from "../state/NotesProvider";
+import AppLayout from "./AppLayout";
+
+export default function App() {
+  return (
+    <NotesProvider>
+      <AppLayout />
+    </NotesProvider>
+  );
+}
+```
+
+---
+
+# ⭐ 8. `src/app/AppLayout.jsx`
+
+```jsx
+import NotesSidebar from "../components/sidebar/NotesSidebar";
+import NoteEditor from "../components/editor/NoteEditor";
+
+export default function AppLayout() {
+  return (
+    <div className="layout">
+      <NotesSidebar />
+      <NoteEditor />
+    </div>
+  );
+}
+```
+
+This is the two‑pane layout.
+
+---
+
+# ⭐ What you just learned  
+You now understand:
+
+- how global state is structured  
+- how CRUD flows through the app  
+- how persistence is abstracted  
+- how the editor and sidebar will communicate  
+- how the architecture scales  
+
+This is exactly how real engineers build a foundation before touching UI.
+
+---
+
+# ⭐ Your next step  
+Now that the **engine** is built, you choose what to build next:
+
+### **A. Build the Sidebar UI (NotesSidebar, NotesList, NoteListItem, NewNoteButton)**  
+### **B. Build the Editor UI (NoteEditor, TitleInput, BodyEditor, AutoSaveIndicator)**  
+### **C. Build the Auto‑Save Hook (useAutoSave)**  
+### **D. Build the CSS layout (Apple‑style two‑pane)**  
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Absolutely, Corey — here is a **full, production‑grade Jira board** for **Sprint 1: Core Editor + Notes List**, complete with:
+
+- Epics  
+- Stories  
+- Ticket descriptions  
+- Acceptance criteria  
+- Subtasks  
+- Clear developer‑ready language  
+
+This is exactly how a real PM or tech lead would structure a sprint in Jira.
+
+I’m giving you the **entire board**, organized by swimlanes.
+
+---
+
+# ⭐ **EPIC: Sprint 1 — Core Editor + Notes List**
+
+> Goal: Deliver the foundational note‑taking experience: create, edit, auto‑save, and persist notes with a clean two‑pane layout.
+
+---
+
+# 🟦 **STORY GROUP A — Sidebar UI**
+
+## **Story A1 — Implement Notes Sidebar**
+**Description:**  
+Build the left‑side navigation that lists all notes, allows selecting a note, and provides a button to create new notes.
+
+**Acceptance Criteria**
+- Sidebar displays all notes sorted by `updatedAt`  
+- Clicking a note selects it  
+- Active note is visually highlighted  
+- “New Note” button creates a blank note and selects it  
+- Empty state appears when no notes exist  
+
+---
+
+### **FEAT‑101 — Create `<NotesSidebar />` container**
+**Description:**  
+Implement the sidebar wrapper and connect it to global state.
+
+**Subtasks**
+- Render sidebar layout  
+- Pull `notes` and `activeNoteId` from `useNotes()`  
+- Pass data to child components  
+
+---
+
+### **FEAT‑102 — Implement `<SidebarHeader />`**
+**Description:**  
+Add header with title and spacing.
+
+**Subtasks**
+- Add “Notes” title  
+- Add layout spacing  
+- Prepare slot for NewNoteButton  
+
+---
+
+### **FEAT‑103 — Implement `<NewNoteButton />`**
+**Description:**  
+Button that triggers `createNote()`.
+
+**Subtasks**
+- Add button UI  
+- Call `createNote()` on click  
+- Auto‑select new note  
+
+---
+
+### **FEAT‑104 — Implement `<NotesList />`**
+**Description:**  
+List component that maps notes to list items.
+
+**Subtasks**
+- Map notes array  
+- Sort by `updatedAt`  
+- Render `<NoteListItem />`  
+
+---
+
+### **FEAT‑105 — Implement `<NoteListItem />`**
+**Description:**  
+Clickable list item representing a single note.
+
+**Subtasks**
+- Display title + preview  
+- Highlight active note  
+- Call `selectNote(id)` on click  
+
+---
+
+### **FEAT‑106 — Implement Sidebar Empty State**
+**Description:**  
+Show placeholder when no notes exist.
+
+**Subtasks**
+- Add empty state UI  
+- Add CTA to create first note  
+
+---
+
+# 🟩 **STORY GROUP B — Editor UI**
+
+## **Story B1 — Implement Note Editor**
+**Description:**  
+Build the main editor where users edit the title and body of the selected note.
+
+**Acceptance Criteria**
+- Title input updates note title  
+- Body editor updates note body  
+- Editor loads selected note  
+- Editor shows empty state when no note selected  
+- Editor updates `updatedAt` timestamp  
+
+---
+
+### **FEAT‑111 — Create `<NoteEditor />` container**
+**Description:**  
+Main editor wrapper that loads the active note.
+
+**Subtasks**
+- Pull `activeNoteId` and `notes`  
+- Find active note  
+- Render editor or empty state  
+
+---
+
+### **FEAT‑112 — Implement `<NoteTitleInput />`**
+**Description:**  
+Controlled input for note title.
+
+**Subtasks**
+- Render input  
+- Bind value to note.title  
+- Call `updateNote(id, { title })`  
+
+---
+
+### **FEAT‑113 — Implement `<NoteBodyEditor />`**
+**Description:**  
+Controlled textarea for note body.
+
+**Subtasks**
+- Render textarea  
+- Bind value to note.body  
+- Call `updateNote(id, { body })`  
+
+---
+
+### **FEAT‑114 — Implement `<EditorEmptyState />`**
+**Description:**  
+Placeholder UI when no note is selected.
+
+**Subtasks**
+- Add friendly message  
+- Add CTA to create/select a note  
+
+---
+
+### **FEAT‑115 — Wire Editor to Global State**
+**Description:**  
+Ensure editor updates propagate through NotesProvider.
+
+**Subtasks**
+- Connect updateNote  
+- Ensure timestamps update  
+- Ensure editor re-renders correctly  
+
+---
+
+# 🟧 **STORY GROUP C — Auto‑Save System**
+
+## **Story C1 — Implement Auto‑Save**
+**Description:**  
+Add debounced auto‑save behavior to prevent data loss and provide a modern UX.
+
+**Acceptance Criteria**
+- Auto‑save triggers after 300ms of inactivity  
+- Auto‑save indicator shows saving/saved/error  
+- No data loss on refresh  
+- Editor remains responsive  
+
+---
+
+### **FEAT‑121 — Implement `useDebounce()`**
+**Description:**  
+Generic debounce hook.
+
+**Subtasks**
+- Accept value + delay  
+- Return debounced value  
+- Add cleanup logic  
+
+---
+
+### **FEAT‑122 — Implement `useAutoSave()`**
+**Description:**  
+Hook that watches title/body and triggers updateNote.
+
+**Subtasks**
+- Watch note fields  
+- Debounce updates  
+- Trigger updateNote  
+- Update AutoSaveIndicator state  
+
+---
+
+### **FEAT‑123 — Implement `<AutoSaveIndicator />`**
+**Description:**  
+UI component showing save status.
+
+**Subtasks**
+- Add “Saving…” state  
+- Add “Saved” state  
+- Add “Error” state  
+- Add fade-out animation  
+
+---
+
+### **FEAT‑124 — Integrate Auto‑Save into Editor**
+**Description:**  
+Connect auto‑save hook to title/body inputs.
+
+**Subtasks**
+- Pass note fields to useAutoSave  
+- Trigger updates on change  
+- Display AutoSaveIndicator  
+
+---
+
+# 🟨 **STORY GROUP D — Layout + Styling**
+
+## **Story D1 — Implement Two‑Pane Layout**
+**Description:**  
+Create the responsive layout for sidebar + editor.
+
+**Acceptance Criteria**
+- Sidebar left, editor right  
+- Clean spacing + typography  
+- Responsive on mobile/tablet  
+- Matches Note Hub V2 design direction  
+
+---
+
+### **FEAT‑131 — Implement `<AppLayout />` CSS**
+**Description:**  
+Use CSS grid or flex to create two‑pane layout.
+
+**Subtasks**
+- Define layout container  
+- Sidebar width (fixed)  
+- Editor flex-grow  
+
+---
+
+### **FEAT‑132 — Add Global Styles**
+**Description:**  
+Typography, spacing, resets.
+
+**Subtasks**
+- Add CSS variables  
+- Add base typography  
+- Add spacing scale  
+
+---
+
+### **FEAT‑133 — Add Theme Variables**
+**Description:**  
+Color palette, shadows, radii.
+
+**Subtasks**
+- Define color tokens  
+- Define shadow tokens  
+- Define border radius tokens  
+
+---
+
+### **FEAT‑134 — Add Responsive Breakpoints**
+**Description:**  
+Collapse sidebar on small screens.
+
+**Subtasks**
+- Add media queries  
+- Add mobile layout  
+- Add tablet layout  
+
+---
+
+# ⭐ Your Jira Board Is Now Complete  
+This is a **real, production‑ready** Sprint 1 board.
+
+You can literally paste these into Jira and start the sprint.
+
+---
+
+# ⭐ Want me to generate a CSV you can import into Jira?  
+I can format every ticket into a Jira‑compatible CSV with:
+
+- Summary  
+- Description  
+- Issue Type  
+- Epic Link  
+- Acceptance Criteria  
+- Subtasks  
+
+Just say **“generate the CSV”** and I’ll produce it.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Great question — and this is exactly how real engineering teams scale from Sprint 1 to Sprint 2 without chaos.
+
+Here’s the key idea:
+
+# ⭐ You **repeat the same planning framework**, but the *content* changes because Sprint 2 focuses on a new feature set.
+
+Sprint planning is a **repeatable process**, not a one‑time event.
+
+Below is the exact checklist you’d follow for Sprint 2, mirroring Sprint 1’s structure.
+
+---
+
+# ⭐ **Sprint 2 Planning Checklist (Same Process, New Feature)**
+
+Sprint 2 is about **Tags System** (based on your earlier roadmap).  
+So you repeat the same steps you did for Sprint 1 — but applied to tags.
+
+Here’s the full breakdown.
+
+---
+
+# ⭐ **Step 1 — Define the Sprint Goal**
+Example:
+
+> “Enable users to organize notes using a multi‑tag system with autocomplete and tag management.”
+
+This is your north star.
+
+---
+
+# ⭐ **Step 2 — Identify the User Stories**
+For Sprint 2, the main story is:
+
+### **USER STORY — Tagging System**
+As a user, I want to add and remove tags from notes so I can organize my content.
+
+You may have secondary stories:
+
+- Tag autocomplete  
+- Tag filtering (if included)  
+- Tag UI components  
+
+---
+
+# ⭐ **Step 3 — Write Acceptance Criteria**
+Just like Sprint 1.
+
+Example:
+
+- User can add tags to a note  
+- User can remove tags  
+- Tags persist  
+- Autocomplete suggests existing tags  
+- Tags support keyboard navigation  
+- Notes can have unlimited tags  
+
+This defines “done.”
+
+---
+
+# ⭐ **Step 4 — Break Into Engineering Tasks**
+This is where you repeat the Sprint 1 pattern:
+
+### **Architecture Tasks**
+- Update note schema to include `tags: string[]`
+- Create `useTags()` hook (optional)
+- Update persistence layer to store tags
+
+### **UI Tasks**
+- Build `<TagInput />`
+- Build `<TagPill />`
+- Build autocomplete dropdown
+- Add tag removal button
+
+### **Integration Tasks**
+- Connect tags to NoteEditor
+- Update CRUD logic to handle tags
+- Update NotesList to show tags (optional)
+
+### **Testing Tasks**
+- Unit tests for tag operations
+- Integration tests for autocomplete
+- Manual QA for tag creation/removal
+
+---
+
+# ⭐ **Step 5 — Create Jira Tickets**
+Exactly like Sprint 1:
+
+- Story → broken into FEAT‑201, FEAT‑202, etc.
+- Each ticket has:
+  - Description  
+  - Acceptance criteria  
+  - Subtasks  
+
+You already saw how this looks in Sprint 1 — Sprint 2 is identical in structure.
+
+---
+
+# ⭐ **Step 6 — Estimate Tickets (Story Points)**
+Your team assigns points:
+
+- 1–2 points → small UI components  
+- 3–5 points → logic-heavy tasks  
+- 8+ points → break it down  
+
+Same process as Sprint 1.
+
+---
+
+# ⭐ **Step 7 — Build the Component Tree for Sprint 2**
+Just like Sprint 1, but for tags:
+
+```
+NoteEditor
+│
+└── TagInput
+    ├── TagPill (repeated)
+    └── TagAutocomplete
+```
+
+This ensures you know what to build.
+
+---
+
+# ⭐ **Step 8 — Define the File Structure Additions**
+Sprint 2 adds:
+
+```
+components/tags/
+    TagInput.jsx
+    TagPill.jsx
+    TagAutocomplete.jsx
+
+hooks/
+    useTags.js
+
+types/
+    tag.js
+```
+
+Same pattern as Sprint 1.
+
+---
+
+# ⭐ **Step 9 — Technical Architecture**
+You define:
+
+- how tags integrate with notes  
+- how autocomplete works  
+- how tags persist  
+- how tags update state  
+
+Same as Sprint 1’s architecture step.
+
+---
+
+# ⭐ **Step 10 — Begin Implementation**
+Now the team starts coding.
+
+---
+
+# ⭐ **Step 11 — QA + UAT**
+Same as Sprint 1:
+
+- Test tag creation  
+- Test tag removal  
+- Test autocomplete  
+- Test persistence  
+- Test keyboard navigation  
+
+---
+
+# ⭐ **Step 12 — Sprint Review + Retrospective**
+You evaluate:
+
+- What went well  
+- What didn’t  
+- What to improve for Sprint 3  
+
+Same cycle.
+
+---
+
+# ⭐ **In short: Sprint 2 repeats the same 12‑step process as Sprint 1**
+
+You just plug in the **new feature** (tags) instead of the old one (editor).
+
+---
+
+# ⭐ If you want, I can generate Sprint 2 the same way I did Sprint 1:
+
+- Full Jira board  
+- Ticket descriptions  
+- Acceptance criteria  
+- Subtasks  
+- Component tree  
+- File structure  
+- Technical architecture  
+- Starter code  
+
+Just say **“Generate Sprint 2”** and I’ll build the entire thing.
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Absolutely, Corey — here is **Sprint 2**, built at the same professional level as Sprint 1.  
+This is a **full, production‑grade sprint plan + Jira board**, complete with:
+
+- Sprint Goal  
+- User Stories  
+- Acceptance Criteria  
+- Engineering Tasks  
+- Full Jira Tickets  
+- Subtasks  
+- Component Tree  
+- File Structure Additions  
+- Technical Architecture  
+
+This is exactly what a real engineering team would use.
+
+---
+
+# ⭐ **SPRINT 2 — Tagging System**
+
+## 🎯 **Sprint Goal**
+Enable users to organize notes using a **multi‑tag system** with autocomplete, tag creation, tag removal, and persistent storage.
+
+This sprint builds on the Sprint 1 foundation and introduces the first “metadata layer” for notes.
+
+---
+
+# ⭐ **USER STORY — Tagging System**
+
+**As a** user  
+**I want** to add and remove tags from notes  
+**So that** I can organize and categorize my content.
+
+---
+
+# ⭐ **Acceptance Criteria**
+
+### ✔ Tag Creation
+- User can type a tag name and press Enter to add it  
+- Tags are stored as `string[]` on each note  
+- Tags persist across refresh  
+
+### ✔ Tag Removal
+- Each tag has a remove (×) button  
+- Removing a tag updates the note immediately  
+
+### ✔ Autocomplete
+- Autocomplete dropdown appears when typing  
+- Suggestions come from **existing tags across all notes**  
+- Arrow keys navigate suggestions  
+- Enter selects a suggestion  
+
+### ✔ UI Behavior
+- Tags appear as pills  
+- TagInput supports keyboard navigation  
+- TagInput prevents duplicate tags  
+
+### ✔ Performance
+- Autocomplete updates in < 50ms  
+- Tag operations do not re-render entire app  
+
+---
+
+# ⭐ **SPRINT 2 — Jira Board**
+
+Below is the full board, structured exactly like Sprint 1.
+
+---
+
+# 🟦 **STORY GROUP S2‑A — Tag Input UI**
+
+## **Story S2‑A1 — Implement Tag Input Component**
+**Description:**  
+Create a reusable TagInput component that allows adding and removing tags on a note.
+
+**Acceptance Criteria**
+- User can type to create tags  
+- Pressing Enter adds a tag  
+- Tags appear as pills  
+- Removing a tag updates the note  
+
+---
+
+### **FEAT‑201 — Create `<TagInput />` container**
+**Description:**  
+Main component that manages tag input state.
+
+**Subtasks**
+- Render input + tag pills  
+- Handle Enter key  
+- Prevent duplicates  
+- Emit `onChange(tags[])`  
+
+---
+
+### **FEAT‑202 — Implement `<TagPill />`**
+**Description:**  
+Visual pill representing a tag.
+
+**Subtasks**
+- Render tag text  
+- Add remove button  
+- Call `onRemove(tag)`  
+
+---
+
+### **FEAT‑203 — Add TagInput keyboard navigation**
+**Subtasks**
+- Support Backspace to delete last tag  
+- Support arrow keys to move caret  
+- Prevent cursor jump issues  
+
+---
+
+# 🟩 **STORY GROUP S2‑B — Autocomplete System**
+
+## **Story S2‑B1 — Implement Tag Autocomplete**
+**Description:**  
+Autocomplete dropdown that suggests existing tags.
+
+**Acceptance Criteria**
+- Dropdown appears when typing  
+- Suggestions filter by input  
+- Arrow keys navigate  
+- Enter selects suggestion  
+- Clicking suggestion adds tag  
+
+---
+
+### **FEAT‑211 — Create `<TagAutocomplete />`**
+**Subtasks**
+- Render dropdown  
+- Filter suggestions  
+- Highlight active suggestion  
+
+---
+
+### **FEAT‑212 — Integrate autocomplete with TagInput**
+**Subtasks**
+- Show dropdown when typing  
+- Hide dropdown on blur  
+- Add suggestion on Enter  
+
+---
+
+### **FEAT‑213 — Build tag suggestion engine**
+**Subtasks**
+- Collect all tags from all notes  
+- Deduplicate  
+- Sort by frequency  
+- Provide to autocomplete  
+
+---
+
+# 🟧 **STORY GROUP S2‑C — Data Model + CRUD Updates**
+
+## **Story S2‑C1 — Add Tags to Note Schema**
+**Description:**  
+Extend the note schema to support tags.
+
+**Acceptance Criteria**
+- Notes include `tags: string[]`  
+- Tags persist in localStorage  
+- CRUD operations support tags  
+
+---
+
+### **FEAT‑221 — Update note schema**
+**Subtasks**
+- Add `tags: []` default  
+- Update type definitions  
+
+---
+
+### **FEAT‑222 — Update `useNotes()` to support tag updates**
+**Subtasks**
+- Add `updateNote(id, { tags })` support  
+- Ensure timestamps update  
+
+---
+
+### **FEAT‑223 — Update persistence layer**
+**Subtasks**
+- Ensure tags serialize/deserialize correctly  
+- Add migration for older notes  
+
+---
+
+# 🟨 **STORY GROUP S2‑D — Editor Integration**
+
+## **Story S2‑D1 — Integrate Tags into NoteEditor**
+**Description:**  
+Add TagInput to the editor UI.
+
+**Acceptance Criteria**
+- TagInput appears under title  
+- Editing tags updates the note  
+- Autocomplete works inside editor  
+
+---
+
+### **FEAT‑231 — Add TagInput to NoteEditor**
+**Subtasks**
+- Render TagInput  
+- Pass note.tags  
+- Pass updateNote handler  
+
+---
+
+### **FEAT‑232 — Add tag styling to editor**
+**Subtasks**
+- Add spacing  
+- Add pill styling  
+- Add hover/focus states  
+
+---
+
+# ⭐ **SPRINT 2 — Component Tree**
+
+```
+NoteEditor
+│
+├── NoteTitleInput
+├── TagInput
+│   ├── TagPill (repeated)
+│   └── TagAutocomplete
+└── NoteBodyEditor
+```
+
+This plugs directly into the Sprint 1 editor.
+
+---
+
+# ⭐ **SPRINT 2 — File Structure Additions**
+
+```
+components/tags/
+    TagInput.jsx
+    TagPill.jsx
+    TagAutocomplete.jsx
+
+hooks/
+    useTags.js   (optional, if you want tag-specific logic)
+
+types/
+    tag.js       (optional, if tags become objects later)
+```
+
+---
+
+# ⭐ **SPRINT 2 — Technical Architecture**
+
+### **1. Note Schema Update**
+```js
+{
+  id: string,
+  title: string,
+  body: string,
+  tags: string[],
+  createdAt: number,
+  updatedAt: number
+}
+```
+
+### **2. TagInput Behavior**
+- Controlled component  
+- Emits updated tag list  
+- Handles keyboard shortcuts  
+- Integrates with autocomplete  
+
+### **3. Autocomplete Engine**
+- Collects all tags from all notes  
+- Deduplicates  
+- Filters by input  
+- Sorts by frequency  
+
+### **4. State Flow**
+```
+TagInput → updateNote(id, { tags })
+useNotes → saveNotes(notes)
+localStorageAdapter → persist
+```
+
+### **5. Performance**
+- Memoize TagPill  
+- Memoize autocomplete list  
+- Debounce filtering  
+
+---
+
+# ⭐ Sprint 2 is now fully planned.
+
+If you want, I can generate:
+
+### ✔ Sprint 2 Starter Code  
+### ✔ Sprint 2 Jira CSV (import‑ready)  
+### ✔ Sprint 3 Planning (Global Search)  
+### ✔ Sprint 2 UI mockups (ASCII wireframes)  
+
+Just tell me what you want next, Corey.
