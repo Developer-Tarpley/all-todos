@@ -10,11 +10,15 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
     const [editId, setEditId] = useState(null);
     const [taskUpdate, setTaskUpdate] = useState("")
 
+    function autoSmartCapitalize(str) {
+        return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
+    };
+
     const handleUpdate = (event) => {
         event.preventDefault();
 
-        const updates = { text: taskUpdate }
-        
+        const updates = { text: autoSmartCapitalize(taskUpdate).trim() }
+
         updateTask(editId, updates)
         setEditMode(false)
     }
@@ -23,11 +27,11 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
     return <ul
         className="task-list"
     >
-        { tasks.length < 1 && <p>Currently No Plan's Created</p> }
+        {tasks.length < 1 && <p>Currently No Plan's Created</p>}
         {
 
             tasks.map(task =>
-                
+
                 editMode && task.id === editId ? // do this
                     <li
                         key={task.id}
@@ -51,7 +55,7 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
                     </li>
 
                     : // else do this
-                    
+
                     <li
                         key={task.id}
                         data-id={task.id}
@@ -59,12 +63,15 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
                     >
                         <div className="card-button-container">
                             <Custom_Checkbox />
-                            <Edit_Button
-                                setEditMode={setEditMode}
-                                setEditId={setEditId}
-                                taskId={task.id}
-                            />
-                            <Delete_Button deleteTask={deleteTask} />
+                            <div>
+
+                                <Edit_Button
+                                    setEditMode={setEditMode}
+                                    setEditId={setEditId}
+                                    taskId={task.id}
+                                />
+                                <Delete_Button deleteTask={deleteTask} />
+                            </div>
                         </div>
                         <span className="list-item">
                             {task.text}
