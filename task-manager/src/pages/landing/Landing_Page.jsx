@@ -13,7 +13,7 @@ export default function Landing_Page() {
         <header className="landing-header">
             <h1>Simple Task Manager</h1>
             <Custom_Input {...useTasks}/>
-            <Select_All_Container/>
+            {/* <Select_All_Container/> */}
         </header>
 
         <main className="landing-content">
