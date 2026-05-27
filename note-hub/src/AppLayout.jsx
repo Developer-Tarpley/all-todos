@@ -1,5 +1,5 @@
-import NotesSidebar from "./components/sidebar/NotesSidebar";
-import NoteEditor from "./components/editor/NoteEditor";
+import NotesSidebar from "./components/sidebar/notes-sidebar/NotesSidebar";
+import NoteEditor from "./components/editor/note-editor/NoteEditor";
 
 export default function AppLayout() {
   return (
