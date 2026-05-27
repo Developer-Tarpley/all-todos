@@ -5,10 +5,11 @@ import Custom_Checkbox from "../inputs/Custom_Checkbox"
 import { useEffect, useState } from "react";
 
 
-export default function Task_Card({ tasks, updateTask, deleteTask }) {
+export default function Task_Card({ tasks, updateTask, deleteTask, toggleComplete }) {
     const [editMode, setEditMode] = useState(false);
     const [editId, setEditId] = useState(null);
-    const [taskUpdate, setTaskUpdate] = useState("")
+    const [taskUpdate, setTaskUpdate] = useState("");
+
 
     function autoSmartCapitalize(str) {
         return str.replace(/(^\s*[a-z])|([.!?]\s+[a-z])/g, m => m.toUpperCase());
@@ -16,15 +17,48 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
 
     const handleUpdate = (event) => {
         event.preventDefault();
+        let exists = tasks.find(task => task.text === taskUpdate)
+
+        if (taskUpdate === "" || exists) {
+            setEditMode(false);
+            return;
+        };
 
         const updates = { text: autoSmartCapitalize(taskUpdate).trim() }
+        updateTask(editId, updates);
+        setEditMode(false);
+        setTaskUpdate("")
+    }
 
-        updateTask(editId, updates)
-        setEditMode(false)
+    const handleListEvents = (event) => {
+        let svgButton = event.target.closest(["svg[role=button]"]);
+        let checkBox = event.target.closest(["input[type=checkbox]"]);
+
+        // if (!svgButton) return;
+        if (!svgButton && !checkBox) return;
+
+        if (svgButton && svgButton.dataset.action === "edit") {
+            let targetLi = svgButton.closest("li");
+            setEditId(targetLi.dataset.id);
+            setEditMode(true);
+        }
+        else if (svgButton && svgButton.dataset.action === "remove") {
+            let targetLi = svgButton.closest("li");
+            deleteTask(targetLi.dataset.id)
+            setEditMode(false);
+        }
+
+        if (checkBox) {
+            let isComplete = checkBox.checked;
+            let li = checkBox.closest("li");
+            let targetId = li.dataset.id;
+            toggleComplete(targetId, { completed: isComplete })
+        }
     }
 
 
     return <ul
+        onClick={(event) => handleListEvents(event)}
         className="task-list"
     >
         {tasks.length < 1 && <p>Currently No Plan's Created</p>}
@@ -39,17 +73,18 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
                         className="task-card"
                     >
                         <div className="card-button-container">
-                            <Custom_Checkbox />
+                            <Custom_Checkbox task={task} />
                             <Edit_Button
                                 editMode={editMode}
                                 setEditMode={setEditMode}
                                 setEditId={setEditId}
                                 taskId={task.id}
+                                task={task}
                             />
                             <Delete_Button deleteTask={deleteTask} />
                         </div>
                         <form onSubmit={(event) => handleUpdate(event)}>
-                            <input onChange={(event) => setTaskUpdate(event.target.value)} type="text" defaultValue={task.text} />
+                            <input autoFocus={true} onChange={(event) => setTaskUpdate(event.target.value)} type="text" defaultValue={task.text} />
                             <button type="submit">save</button>
                         </form>
                     </li>
@@ -62,20 +97,29 @@ export default function Task_Card({ tasks, updateTask, deleteTask }) {
                         className="task-card"
                     >
                         <div className="card-button-container">
-                            <Custom_Checkbox />
+                            <Custom_Checkbox task={task} />
                             <div>
 
                                 <Edit_Button
                                     setEditMode={setEditMode}
                                     setEditId={setEditId}
                                     taskId={task.id}
+                                    task={task}
                                 />
                                 <Delete_Button deleteTask={deleteTask} />
                             </div>
                         </div>
-                        <span className="list-item">
-                            {task.text}
-                        </span>
+                        {
+                            task.completed ?
+                                <span>
+                                    <span className="list-item-complete"> {task.text}</span>
+                                    <span className="complete">Completed</span>
+                                </span>
+                                :
+                                <span className="list-item">
+                                    {task.text}
+                                </span>
+                        }
                     </li>)
         }
     </ul>

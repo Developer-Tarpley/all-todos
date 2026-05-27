@@ -14,6 +14,7 @@ export default function Use_Tasks() {
     }, []);
 
     const addTask = useCallback((text) => {
+        console.log("add a task: ", text)
         let newTask = {
             id: Create_IDs(),
             text: text,
@@ -28,13 +29,18 @@ export default function Use_Tasks() {
 
     const deleteTask = useCallback((id) => {
         commit((prev) => crud.delete(prev, id))
-    }, [commit])
+    }, [commit]);
+
+    const toggleComplete = useCallback((id, updates) => {
+        commit((prev) => crud.update(prev, id, updates));
+    }, [commit]);
 
 
     return {
         tasks,
         addTask,
         updateTask,
-        deleteTask
+        deleteTask,
+        toggleComplete
     }
 }

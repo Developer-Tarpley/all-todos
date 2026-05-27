@@ -10,8 +10,9 @@ export default function Custom_Input({ addTask }) {
     };
 
     const handleAddTask = (event) => {
-        if (task === "") return;
         event.preventDefault();
+        console.log("clicked",task)
+        // if (task === "" || task === task) return;
         addTask(autoSmartCapitalize(task.trim()));
         setTask("");
     };
@@ -35,15 +36,3 @@ export default function Custom_Input({ addTask }) {
     </form>
 
 };
-
-{/* <textarea
-    name="task"
-    id="task"
-    onChange={(e) => setTask(e.target.value)}
-    className="custom-input"
-    // value={task.value}
-    cols={40}
-    rows={5}
-    placeholder="Add A Task Here..."
-    value={task}
-></textarea> */}

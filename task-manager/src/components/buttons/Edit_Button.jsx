@@ -1,33 +1,23 @@
 import "./edit_button.css";
 import { LiaEdit } from "react-icons/lia";
 
-export default function Edit_Button({
-    taskId,
-    setEditId,
-    setEditMode,
-    editMode
-}) {
-
-    const handleToggleEdit = (event) => {
-        let li = event.target.closest("li")
-        setEditMode(true);
-        setEditId(li.dataset.id);
-    }
+export default function Edit_Button({ editMode, task }) {
 
     return <>
         {
-            editMode ? // do this
+            editMode || task.completed ? // do this
                 <LiaEdit
-                    onClick={(event) => handleToggleEdit(event)}
                     className="edit-task-button disabled"
                     role="button"
+                    data-action="edit"
                     tabIndex={0}
+                    id="edit"
                 />
                 : // else
                 <LiaEdit
-                    onClick={(event) => handleToggleEdit(event)}
                     className="edit-task-button"
                     role="button"
+                    data-action="edit"
                     tabIndex={0}
                 />
         }

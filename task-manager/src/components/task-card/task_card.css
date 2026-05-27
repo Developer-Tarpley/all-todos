@@ -38,3 +38,12 @@
 .task-item {
     text-decoration: none;
 }
+
+.list-item-complete{
+    text-decoration: line-through;
+}
+.complete {
+    color: green;
+    margin-left: 10px;
+    text-decoration:none;
+}

@@ -7,7 +7,8 @@ import Task_Card from "../../components/task-card/Task_Card";
 export default function ({
     tasks,
     updateTask,
-    deleteTask
+    deleteTask,
+    toggleComplete
 }) {
 
     useEffect(() => {
@@ -22,6 +23,7 @@ export default function ({
             tasks={tasks}
             updateTask={updateTask}
             deleteTask={deleteTask}
+            toggleComplete={toggleComplete}
         />
     </>
 }
