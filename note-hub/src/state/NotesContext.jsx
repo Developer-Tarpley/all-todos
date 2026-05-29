@@ -1,3 +1,9 @@
 import { createContext } from "react";
 
-export const NotesContext = createContext(null);
+export const NotesContext = createContext({
+    notes: [],
+    activeNoteId: null,
+    createNote: ()=>{},
+    updateNote: ()=>{},
+    selectNote: ()=>{}
+});
