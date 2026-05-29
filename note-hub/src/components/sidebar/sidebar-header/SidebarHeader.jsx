@@ -1,9 +1,9 @@
 
-import NewNotesButton from "../new-note-button/NewNoteButton";
+import NewNoteButton from "../new-note-button/NewNoteButton";
 
 export default function SidebarHeader() {
     return <header>
         <h1>Notes</h1>
-        <NewNotesButton/>
+        <NewNoteButton/>
     </header>
 }

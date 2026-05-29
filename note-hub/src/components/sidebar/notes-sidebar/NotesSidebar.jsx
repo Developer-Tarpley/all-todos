@@ -1,5 +1,5 @@
 
-import useNotes from "../../../hooks/useNotes";
+import {useNotes} from "../../../hooks/useNotes";
 import SidebarHeader from "../sidebar-header/SidebarHeader";
 import NotesList from "../notes-list/NotesList";
 
