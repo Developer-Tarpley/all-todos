@@ -1,15 +1,3 @@
-// ---
-
-// ### **FEAT‑113 — Implement `<NoteBodyEditor />`**
-// **Description:**  
-// Controlled textarea for note body.
-
-// **Subtasks**
-// - Render textarea  
-// - Bind value to note.body  
-// - Call `updateNote(id, { body })`  
-
-// ---
 
 import { useNotes } from "../../../hooks/useNotes";
 

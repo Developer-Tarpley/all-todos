@@ -1,16 +1,3 @@
-// ---
-
-// ### **FEAT‑112 — Implement `<NoteTitleInput />`**
-// **Description:**  
-// Controlled input for note title.
-
-// **Subtasks**
-// - Render input  
-// - Bind value to note.title  
-// - Call `updateNote(id, { title })`  
-
-// ---
-
 
 
 import { useState } from "react";

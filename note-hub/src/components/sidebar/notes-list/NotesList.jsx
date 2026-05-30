@@ -1,5 +1,6 @@
 
 import { useNotes } from "../../../hooks/useNotes";
+import NoteListItem from "../note-list-item/NoteListItem"
 
 export default function NotesList({notes, activeNoteId}) {
 

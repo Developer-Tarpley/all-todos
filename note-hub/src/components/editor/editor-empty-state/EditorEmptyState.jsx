@@ -1,14 +1,3 @@
-// ---
-
-// ### **FEAT‑114 — Implement `<EditorEmptyState />`**
-// **Description:**  
-// Placeholder UI when no note is selected.
-
-// **Subtasks**
-// - Add friendly message  
-// - Add CTA to create/select a note  
-
-// ---
 
 import { useNotes } from "../../../hooks/useNotes"
 

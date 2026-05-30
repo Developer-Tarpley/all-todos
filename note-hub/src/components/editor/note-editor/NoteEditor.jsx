@@ -10,20 +10,6 @@
 // - Ensure editor re-renders correctly  
 
 // ---
-// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-// ---
-
-// ### **FEAT‑111 — Create `<NoteEditor />` container**
-// **Description:**  
-// Main editor wrapper that loads the active note.
-
-// **Subtasks**
-// - Pull `activeNoteId` and `notes`  
-// - Find active note  
-// - Render editor or empty state  
-
-// ---
 
 import { useNotes } from "../../../hooks/useNotes";
 import EditorEmptyState from "../editor-empty-state/EditorEmptyState";
