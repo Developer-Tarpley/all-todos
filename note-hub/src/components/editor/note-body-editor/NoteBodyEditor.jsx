@@ -11,15 +11,20 @@
 
 // ---
 
-import { useNotes } from "../../../hooks/useNotes"
+import { useNotes } from "../../../hooks/useNotes";
+
 export default function NoteBodyEditor({ note }) {
     let { updateNote } = useNotes();
+
+    const handleBodyUpdate = (value) => {
+        updateNote(note.id, { body: value })
+    }
+
     return <textarea
         name="body"
         id={note.id}
         value={note.body}
-        onChange={() => updateNote(note.id, { body: note.body })}
-    >
-    
-    </textarea>
+        onChange={(event) => handleBodyUpdate(event.target.value)}
+    />
+
 }
