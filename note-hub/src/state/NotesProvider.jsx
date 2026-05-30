@@ -38,6 +38,7 @@ export default function NotesProvider({ children }) {
 
   useEffect(() => {
     saveNotes(notes);
+    console.log("Notes: ", notes)
   }, [notes]);
 
   return (
