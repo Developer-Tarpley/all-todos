@@ -12,7 +12,7 @@ export default function NotesProvider({ children }) {
     const id = generateId();
     const newNote = {
       id,
-      title: "",
+      title: "Untitled",
       body: "",
       createdAt: now(),
       updatedAt: now()

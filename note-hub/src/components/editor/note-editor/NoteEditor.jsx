@@ -3,6 +3,7 @@ import { useNotes } from "../../../hooks/useNotes";
 import EditorEmptyState from "../editor-empty-state/EditorEmptyState";
 import NoteBodyEditor from "../note-body-editor/NoteBodyEditor";
 import NoteTitleInput from "../note-title-input/NoteTitleInput";
+import AutoSaveIndicator from "../auto-save-indicator/AutoSaveIndicator";
 
 export default function NoteEditor() {
     let { notes, activeNoteId } = useNotes();
@@ -13,6 +14,7 @@ export default function NoteEditor() {
         {
             notes.length > 0 && foundNote ?
                 <div className="editor-note">
+                    <AutoSaveIndicator/>
                     <NoteTitleInput note={foundNote}/>
                     <NoteBodyEditor note={foundNote}/>
                 </div>
