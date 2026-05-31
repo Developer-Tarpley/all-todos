@@ -16,7 +16,6 @@ import { useEffect } from "react";
 
 import { useNotes } from "./useNotes";
 import { useDebounce } from "./useDebounce";
-import AutoSaveIndicator from "../components/editor/auto-save-indicator/AutoSaveIndicator"
 import { useState } from "react";
 
 export function useAutoSave() {
@@ -45,7 +44,7 @@ export function useAutoSave() {
             setStatus("saved");
         }
         catch(error){
-            setStatus("Oops! could't save");
+            setStatus("error");
             console.log("auto save error: ", error);
         }
 
