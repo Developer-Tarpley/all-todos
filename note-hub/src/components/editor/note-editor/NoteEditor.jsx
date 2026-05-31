@@ -1,15 +1,3 @@
-// ---
-
-// ### **FEAT‑115 — Wire Editor to Global State**
-// **Description:**  
-// Ensure editor updates propagate through NotesProvider.
-
-// **Subtasks**
-// - Connect updateNote  
-// - Ensure timestamps update  
-// - Ensure editor re-renders correctly  
-
-// ---
 
 import { useNotes } from "../../../hooks/useNotes";
 import EditorEmptyState from "../editor-empty-state/EditorEmptyState";
