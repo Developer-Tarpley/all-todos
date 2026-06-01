@@ -1,6 +1,7 @@
 
 import { useNotes } from "../../../hooks/useNotes";
 import NoteListItem from "../note-list-item/NoteListItem"
+import EmptyState from "../empty-state/EmptyState"
 
 export default function NotesList({notes, activeNoteId}) {
 
@@ -8,6 +9,7 @@ export default function NotesList({notes, activeNoteId}) {
     const sortedNotes = [...notes].sort((a, b) => Number(b.updatedAt) - Number(a.updatedAt))
 
     return <ul className="list-container">
+        {notes.length === 0 && <EmptyState/>}
         {
             sortedNotes.map(note => {
                 return (

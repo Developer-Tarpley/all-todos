@@ -1,6 +1,7 @@
-header{
+.sidebar-header{
     display: flex;
     flex-direction: column;
     gap: 0.35em;
     padding: 1em;
+    width: 100%;
 }
