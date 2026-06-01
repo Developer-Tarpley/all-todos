@@ -1,13 +1,14 @@
 :root{
-    
-/* ### **FEAT‑133 — Add Theme Variables**
-**Description:**  
-Color palette, shadows, radii.*/
+--color-status-success: green;
+--color-status-info: blue;
+--color-status-error: red;
 
-/* **Subtasks** */
-/* - Define color tokens   */
-/* - Define shadow tokens   */
-/* - Define border radius token */
+--bg-note: gold;
+--bg-textarea: black;
+--bg-input: black;
+--color-note-text: black;
+
+--shadow-note: 0 4px 6px hsla(0%, 0%, 0%, 0.125), hsla(43, 74%, 49%, 0.5);
 }
 
 .layout {
