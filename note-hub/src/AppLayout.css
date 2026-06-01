@@ -1,0 +1,36 @@
+/* ---
+
+### **FEAT‑131 — Implement `<AppLayout />` CSS**
+**Description:**  
+Use CSS grid or flex to create two‑pane layout.
+
+**Subtasks**
+- Define layout container  
+- Sidebar width (fixed)  
+- Editor flex-grow  
+
+--- */
+
+/* ### **FEAT‑133 — Add Theme Variables**
+**Description:**  
+Color palette, shadows, radii.
+
+**Subtasks**
+- Define color tokens  
+- Define shadow tokens  
+- Define border radius tokens  
+
+--- */
+
+/* ---
+
+### **FEAT‑134 — Add Responsive Breakpoints**
+**Description:**  
+Collapse sidebar on small screens.
+
+**Subtasks**
+- Add media queries  
+- Add mobile layout  
+- Add tablet layout  
+
+--- */

@@ -1,0 +1,102 @@
+/* ### **FEAT‑132 — Add Global Styles**
+**Description:**  
+Typography, spacing, resets.
+
+**Subtasks**
+- Add CSS variables  
+- Add base typography  
+- Add spacing scale  
+
+✔ Global CSS variables (design tokens)
+
+
+✔ Reset
+You already added this — good.
+
+✔ Base typography
+You haven’t added this yet.
+
+✔ Global background + text color
+Not added yet.
+
+--- */
+
+:root {
+    /* typography scale */
+    /* 1.125 (Major Second)
+    1.2 (Minor Third)
+    1.25 (Major Third)
+    1.333 (Perfect Fourth) */
+
+    /* sidebar items secondary text muted UI */
+    --font-size-sm: 0.875rem;
+    /* body text default UI text */
+    --font-size-md: 1rem;
+    /* section titles important labels */
+    --font-size-lg: 1.25rem;
+    /* page titles major headings */
+    --font-size-xl: 1.5rem;
+    /* hero titles large headings */
+    --font-size-2xl: 2rem;
+
+    /* spacing scale
+    starting at 4px
+     multiplied by 4 */
+
+    /* button padding, small gaps, icon spacing, tight UI elements */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    /* card padding, list item spacing, form fields, sidebar items */
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    /* sections, layout padding, page spacing, big visual separation */
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+
+
+    /* neutral colors */
+    /* grays, off‑whites, near‑blacks, subtle transparent blacks/whites.  */
+    --color-bg: #f5f5f7;
+    --color-surface: #ffffff;
+    --color-border: rgba(0, 0, 0, 0.1);
+    --color-text: #1d1d1f;
+    --color-text-muted: #6e6e73;
+
+
+    /* global radii */
+    --radius-1: 5px;
+    --radius-2: 1em;
+    --radius-3: 50%;
+
+    /* global shadows */
+    --shadow-sm: 0 0 4px hsla(0, 0%, 0%, 0.1);
+    --shadow-md: 0 2px 4px hsla(0, 0%, 0%, 0.3);
+    --shadow-lg: 2px 2px 4px hsla(0, 0%, 0%, 0.5);
+    --shadow-xl: 0 0 6px hsla(0, 0%, 0%, 0.7);
+    --shadow-2xl: 0 4px 6px hsla(0, 0%, 0%, 0.9);
+}
+
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+    font-size: clamp(14px, 1vw + 1rem, 20px);
+}
+
+body {
+    line-height: var(--space-5) ;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+p,
+h1, h2, h3, h4,
+ul,
+input, textarea {
+  margin: 0;
+  padding: 0;
+}
