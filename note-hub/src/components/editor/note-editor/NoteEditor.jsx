@@ -5,6 +5,7 @@ import NoteBodyEditor from "../note-body-editor/NoteBodyEditor";
 import NoteTitleInput from "../note-title-input/NoteTitleInput";
 import AutoSaveIndicator from "../auto-save-indicator/AutoSaveIndicator";
 import HamburgerMenu from "../../common/hamburger-menu/HamburgerMenu";
+import TagInput from "../../tag/tag-input/TagInput";
 
 export default function NoteEditor() {
     let { notes, activeNoteId } = useNotes();
@@ -13,6 +14,7 @@ export default function NoteEditor() {
 
     return <main className="note-editor-container">
             <HamburgerMenu/>
+            <TagInput/>
         {
             notes.length > 0 && foundNote ?
                 <div className="editor-note">
