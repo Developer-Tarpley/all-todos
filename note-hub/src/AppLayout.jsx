@@ -1,3 +1,5 @@
+import "./AppLayout.css";
+
 import NotesSidebar from "./components/sidebar/notes-sidebar/NotesSidebar";
 import NoteEditor from "./components/editor/note-editor/NoteEditor";
 

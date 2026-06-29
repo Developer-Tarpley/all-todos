@@ -7,6 +7,7 @@ import { now } from "../utils/timestamps";
 export default function NotesProvider({ children }) {
   const [notes, setNotes] = useState(() => loadNotes());
   const [activeNoteId, setActiveNoteId] = useState(null);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   const createNote = useCallback(() => {
     const id = generateId();
@@ -48,7 +49,9 @@ export default function NotesProvider({ children }) {
         activeNoteId,
         createNote,
         updateNote,
-        selectNote
+        selectNote,
+        showSidebar,
+        setShowSidebar
       }}
     >
       {children}

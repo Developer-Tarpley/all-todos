@@ -37,6 +37,7 @@ Teams currently lose time searching Slack, email, and scattered docs. Note Hub V
 
 # ⭐ USER STORY 2 — Tagging System (Multi‑Tag Support)
 
+
 **As a** Software Engineer  
 **I want** to tag notes with multiple labels  
 **So that** I can organize technical docs by topic.
@@ -56,6 +57,7 @@ Teams currently lose time searching Slack, email, and scattered docs. Note Hub V
 - Add tag pill UI with remove button  
 
 ---
+
 
 # ⭐ USER STORY 3 — Global Search (Title + Body + Tags)
 
@@ -79,6 +81,7 @@ Teams currently lose time searching Slack, email, and scattered docs. Note Hub V
 
 ---
 
+
 # ⭐ USER STORY 4 — Note Collections (Folders / Groups)
 
 **As a** Project Manager  
@@ -100,6 +103,7 @@ Teams currently lose time searching Slack, email, and scattered docs. Note Hub V
 - Add empty state UI  
 
 ---
+
 
 # ⭐ USER STORY 5 — Version History (Lightweight)
 
@@ -1853,11 +1857,1252 @@ localStorageAdapter → persist
 
 # ⭐ Sprint 2 is now fully planned.
 
-If you want, I can generate:
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-### ✔ Sprint 2 Starter Code  
-### ✔ Sprint 2 Jira CSV (import‑ready)  
-### ✔ Sprint 3 Planning (Global Search)  
-### ✔ Sprint 2 UI mockups (ASCII wireframes)  
 
-Just tell me what you want next, Corey.
+Alright Corey — here it is.  
+**Sprint 3, fully generated, perfectly matching Sprint 1’s structure**, with:
+
+- EPIC  
+- Story Groups A–D  
+- Story  
+- Description  
+- Acceptance Criteria  
+- FEAT tickets  
+- Subtasks  
+
+No extras.  
+No architecture.  
+No engineering‑tasks block.  
+No bloat.  
+Just **pure Sprint‑1 formatting**.
+
+---
+
+# ⭐ **EPIC: Sprint 3 — Global Search**
+
+> Goal: Add a fast, accurate global search system that filters notes by title, body, and tags with real‑time results and highlighting.
+
+---
+
+# 🟦 **STORY GROUP A — Search Bar UI**
+
+## **Story A1 — Implement Search Bar**
+**Description:**  
+Add a global search input that updates results as the user types.
+
+**Acceptance Criteria**
+- Search bar visible at top of sidebar  
+- Input updates search query in real time  
+- Debounce prevents excessive updates  
+- Clear button resets search  
+- Empty state appears when no results  
+
+---
+
+### **FEAT‑301 — Create `<SearchBar />`**
+**Description:**  
+Search input with debounced updates.
+
+**Subtasks**
+- Render search input  
+- Add debounce (150–200ms)  
+- Update global search query  
+- Add clear‑query button  
+
+---
+
+### **FEAT‑302 — Add Search Bar Styling**
+**Description:**  
+Match Note Hub V2 design.
+
+**Subtasks**
+- Add spacing + radius  
+- Add focus ring  
+- Add placeholder text  
+- Add icon slot  
+
+---
+
+---
+
+# 🟩 **STORY GROUP B — Search Engine (Title + Body + Tags)**
+
+## **Story B1 — Implement Search Engine**
+**Description:**  
+Create a search system that matches notes by title, body, and tags.
+
+**Acceptance Criteria**
+- Search matches title, body, and tags  
+- Search is case‑insensitive  
+- Search works with 1000+ notes  
+- Results update instantly  
+- No noticeable lag (< 50ms)  
+
+---
+
+### **FEAT‑311 — Implement `useSearch()` Hook**
+**Description:**  
+Hook that filters notes based on query.
+
+**Subtasks**
+- Accept notes + query  
+- Normalize text  
+- Apply scoring logic  
+- Return sorted results  
+
+---
+
+### **FEAT‑312 — Add Tag Matching**
+**Description:**  
+Include tags in search results.
+
+**Subtasks**
+- Match query against note.tags  
+- Boost tag matches in ranking  
+- Add tests for tag search  
+- Update search results  
+
+---
+
+### **FEAT‑313 — Integrate Search with Notes List**
+**Description:**  
+Filter notes list based on search results.
+
+**Subtasks**
+- Pass filtered notes to `<NotesList />`  
+- Add empty state for no matches  
+- Ensure performance < 50ms  
+- Add loading/transition states  
+
+---
+
+---
+
+# 🟧 **STORY GROUP C — Highlighting & Ranking**
+
+## **Story C1 — Highlight Search Matches**
+**Description:**  
+Highlight matched text in titles, bodies, and tags.
+
+**Acceptance Criteria**
+- Highlight matched substrings  
+- Highlight multiple matches  
+- Highlight case‑insensitive matches  
+- Highlight tags in results  
+- No layout shift  
+
+---
+
+### **FEAT‑321 — Implement Highlighting Utility**
+**Description:**  
+Utility to wrap matched text in `<mark>`.
+
+**Subtasks**
+- Detect match ranges  
+- Wrap matches in `<mark>`  
+- Handle multiple matches  
+- Handle overlapping matches  
+
+---
+
+### **FEAT‑322 — Add Result Ranking**
+**Description:**  
+Sort results by relevance.
+
+**Subtasks**
+- Boost title matches  
+- Boost tag matches  
+- Lower body‑only matches  
+- Sort by score  
+
+---
+
+### **FEAT‑323 — Update `<NotesList />` for Highlighting**
+**Description:**  
+Render highlighted text in list items.
+
+**Subtasks**
+- Add highlighted title  
+- Add highlighted preview  
+- Add highlighted tags  
+- Add fallback for no matches  
+
+---
+
+---
+
+# 🟨 **STORY GROUP D — Performance & UX Polish**
+
+## **Story D1 — Optimize Search Performance**
+**Description:**  
+Ensure search remains fast and responsive with large note sets.
+
+**Acceptance Criteria**
+- Search completes under 50ms for 1000 notes  
+- No UI freezing  
+- Debounce prevents excessive renders  
+- Search results animate smoothly  
+- Search state persists until cleared  
+
+---
+
+### **FEAT‑331 — Add Debounce to Search Query**
+**Description:**  
+Prevent excessive filtering.
+
+**Subtasks**
+- Add debounce wrapper  
+- Tune delay (150–200ms)  
+- Add cleanup logic  
+- Add tests  
+
+---
+
+### **FEAT‑332 — Memoize Search Results**
+**Description:**  
+Improve performance with memoization.
+
+**Subtasks**
+- Cache filtered results  
+- Recompute only on query/notes change  
+- Add fallback for empty query  
+- Add performance tests  
+
+---
+
+### **FEAT‑333 — Add Search Empty State**
+**Description:**  
+Show placeholder when no results match.
+
+**Subtasks**
+- Add empty state UI  
+- Add helpful message  
+- Add animation  
+- Add accessibility labels  
+
+---
+
+# ✔ Sprint 3 COMPLETE  
+# ✔ Matches Sprint 1 format exactly  
+# ✔ No extra sections  
+# ✔ No bloat  
+# ✔ Ready for implementation  
+
+---
+
+If you want to continue:
+
+👉 **“Generate Sprint 4 in Sprint‑1 format.”**
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Alright Corey — here is **Sprint 4**, clean, tight, and formatted **EXACTLY like Sprint 1**, with:
+
+- EPIC  
+- Story Group A  
+- Story Group B  
+- Story Group C  
+- Story Group D  
+- Each with:  
+  - Story  
+  - Description  
+  - Acceptance Criteria  
+  - FEAT tickets  
+  - Subtasks  
+
+No extras.  
+No architecture.  
+No engineering‑tasks block.  
+No bloat.  
+Just **pure Sprint‑1 formatting**.
+
+And this sprint corresponds to:
+
+👉 **USER STORY 4 — Note Collections (Folders / Groups)**
+
+---
+
+# ⭐ **EPIC: Sprint 4 — Note Collections**
+
+> Goal: Add a flexible collections system so users can group notes into folders, organize their workspace, and quickly navigate between categories.
+
+---
+
+# 🟦 **STORY GROUP A — Create & Manage Collections**
+
+## **Story A1 — Create, Rename, Delete Collections**
+**Description:**  
+Allow users to create new collections, rename them, and delete them.
+
+**Acceptance Criteria**
+- User can create a new collection  
+- User can rename a collection  
+- User can delete a collection  
+- Deleting a collection does NOT delete notes  
+- Collections appear in the sidebar  
+- Empty state appears when no collections exist  
+
+---
+
+### **FEAT‑401 — Add `collections[]` to App Schema**
+**Description:**  
+Store collection metadata.
+
+**Subtasks**
+- Add collection id + name  
+- Add persistence layer updates  
+- Add migration logic  
+- Add schema tests  
+
+---
+
+### **FEAT‑402 — Implement `<CollectionsSidebar />`**
+**Description:**  
+Sidebar UI for listing collections.
+
+**Subtasks**
+- Render collection list  
+- Add create button  
+- Add rename option  
+- Add delete option  
+
+---
+
+### **FEAT‑403 — Add Collection Empty State**
+**Description:**  
+Show placeholder when no collections exist.
+
+**Subtasks**
+- Add empty state UI  
+- Add CTA to create first collection  
+- Add accessibility labels  
+- Add animation  
+
+---
+
+---
+
+# 🟩 **STORY GROUP B — Assign Notes to Collections**
+
+## **Story B1 — Move Notes Into Collections**
+**Description:**  
+Allow users to assign notes to collections and move them between collections.
+
+**Acceptance Criteria**
+- User can assign a note to a collection  
+- User can move a note to a different collection  
+- Notes can belong to exactly one collection  
+- Notes update instantly when moved  
+- Collection name appears on each note  
+
+---
+
+### **FEAT‑411 — Add `collectionId` to Note Schema**
+**Description:**  
+Link notes to collections.
+
+**Subtasks**
+- Add `collectionId` field  
+- Update persistence layer  
+- Add migration logic  
+- Add schema tests  
+
+---
+
+### **FEAT‑412 — Implement “Move to Collection” Menu**
+**Description:**  
+UI for assigning notes to collections.
+
+**Subtasks**
+- Add dropdown menu  
+- List all collections  
+- Add “None” option  
+- Update note.collectionId  
+
+---
+
+### **FEAT‑413 — Display Collection Label on Notes**
+**Description:**  
+Show collection name on notes list items.
+
+**Subtasks**
+- Add label UI  
+- Add hover/focus states  
+- Add spacing + radius  
+- Add fallback for no collection  
+
+---
+
+---
+
+# 🟧 **STORY GROUP C — Filter Notes by Collection**
+
+## **Story C1 — Filter Notes When Selecting a Collection**
+**Description:**  
+Clicking a collection filters the notes list to only show notes inside that collection.
+
+**Acceptance Criteria**
+- Clicking a collection filters notes  
+- Active collection is highlighted  
+- Empty state appears when no notes match  
+- Search still works inside a collection  
+- Clearing the filter returns to “All Notes”  
+
+---
+
+### **FEAT‑421 — Implement Collection Filtering Logic**
+**Description:**  
+Filter notes by `collectionId`.
+
+**Subtasks**
+- Filter notes where note.collectionId matches  
+- Update NotesList  
+- Add empty state  
+- Ensure performance  
+
+---
+
+### **FEAT‑422 — Add Active Collection Highlight**
+**Description:**  
+Visually indicate selected collection.
+
+**Subtasks**
+- Add active state styling  
+- Add hover/focus states  
+- Add icon or indicator  
+- Add accessibility labels  
+
+---
+
+### **FEAT‑423 — Add “All Notes” View**
+**Description:**  
+Allow returning to unfiltered view.
+
+**Subtasks**
+- Add “All Notes” item  
+- Reset filter state  
+- Update NotesList  
+- Add disabled state when already active  
+
+---
+
+---
+
+# 🟨 **STORY GROUP D — Collection Ordering & UX Polish**
+
+## **Story D1 — Reorder Collections**
+**Description:**  
+Allow users to reorder collections in the sidebar for better organization.
+
+**Acceptance Criteria**
+- User can drag collections to reorder  
+- Order persists across reloads  
+- Smooth drag animation  
+- Drop targets visible  
+- No accidental drags  
+
+---
+
+### **FEAT‑431 — Implement Drag‑and‑Drop for Collections**
+**Description:**  
+Enable manual reordering.
+
+**Subtasks**
+- Add drag handles  
+- Add drop targets  
+- Update order state  
+- Persist order  
+
+---
+
+### **FEAT‑432 — Add Reorder Animations**
+**Description:**  
+Smooth transitions during drag.
+
+**Subtasks**
+- Add motion transitions  
+- Add hover/focus states  
+- Add placeholder spacing  
+- Add easing curves  
+
+---
+
+### **FEAT‑433 — Persist Collection Order**
+**Description:**  
+Save custom order.
+
+**Subtasks**
+- Save to storage  
+- Load on startup  
+- Sync with sidebar  
+- Add fallback defaults  
+
+---
+
+# ✔ Sprint 4 COMPLETE  
+# ✔ Matches Sprint 1 format exactly  
+# ✔ 4 story groups  
+# ✔ No extra sections  
+# ✔ Ready for implementation  
+
+---
+
+If you want to continue:
+
+👉 **“Generate Sprint 5 in Sprint‑1 format.”**
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Alright Corey — here is **Sprint 5**, clean, tight, and formatted **EXACTLY like Sprint 1**, with:
+
+- EPIC  
+- Story Group A  
+- Story Group B  
+- Story Group C  
+- Story Group D  
+- Each with:  
+  - Story  
+  - Description  
+  - Acceptance Criteria  
+  - FEAT tickets  
+  - Subtasks  
+
+This sprint corresponds to:
+
+👉 **USER STORY 5 — Version History (Lightweight)**
+
+No extras.  
+No architecture.  
+No engineering‑tasks block.  
+No bloat.  
+Just **pure Sprint‑1 formatting**.
+
+---
+
+# ⭐ **EPIC: Sprint 5 — Version History (Lightweight)**
+
+> Goal: Add a simple version history system so users can view previous versions of a note, preview differences, and restore older versions.
+
+---
+
+# 🟦 **STORY GROUP A — Version Snapshot Storage**
+
+## **Story A1 — Store Version Snapshots**
+**Description:**  
+Automatically save lightweight snapshots of notes whenever the user edits content.
+
+**Acceptance Criteria**
+- Each save creates a version snapshot  
+- Snapshot includes title, body, tags, timestamp  
+- Maximum 20 versions per note  
+- Oldest versions are pruned automatically  
+- Snapshots persist across reloads  
+
+---
+
+### **FEAT‑501 — Add `versions[]` to Note Schema**
+**Description:**  
+Extend note model to store snapshots.
+
+**Subtasks**
+- Add `versions[]` array  
+- Add timestamp + metadata  
+- Update persistence layer  
+- Add migration logic  
+
+---
+
+### **FEAT‑502 — Implement Snapshot Creation**
+**Description:**  
+Create snapshots on note save.
+
+**Subtasks**
+- Capture title/body/tags  
+- Add timestamp  
+- Push snapshot to versions[]  
+- Prune to last 20 versions  
+
+---
+
+### **FEAT‑503 — Add Snapshot Metadata Formatting**
+**Description:**  
+Format timestamps for UI.
+
+**Subtasks**
+- Format date/time  
+- Add relative time (e.g., “2 hours ago”)  
+- Add fallback formatting  
+- Add tests  
+
+---
+
+---
+
+# 🟩 **STORY GROUP B — Version History Panel**
+
+## **Story B1 — View Version History**
+**Description:**  
+Allow users to view a list of previous versions for a note.
+
+**Acceptance Criteria**
+- User can open version history panel  
+- Versions listed with timestamps  
+- Versions sorted newest → oldest  
+- Panel scrollable  
+- Empty state when no versions exist  
+
+---
+
+### **FEAT‑511 — Implement `<VersionHistoryPanel />`**
+**Description:**  
+UI for listing versions.
+
+**Subtasks**
+- Render version list  
+- Add timestamps  
+- Add scrollable layout  
+- Add open/close animation  
+
+---
+
+### **FEAT‑512 — Add Version Preview Trigger**
+**Description:**  
+Allow selecting a version to preview.
+
+**Subtasks**
+- Add “Preview” button  
+- Highlight selected version  
+- Add hover/focus states  
+- Add accessibility labels  
+
+---
+
+### **FEAT‑513 — Add Empty State**
+**Description:**  
+Show placeholder when no versions exist.
+
+**Subtasks**
+- Add empty state UI  
+- Add helpful message  
+- Add icon/illustration  
+- Add animation  
+
+---
+
+---
+
+# 🟧 **STORY GROUP C — Diff Preview**
+
+## **Story C1 — Preview Differences Between Versions**
+**Description:**  
+Show a diff view comparing the selected version to the current note.
+
+**Acceptance Criteria**
+- Diff highlights additions and deletions  
+- Diff supports multi‑line changes  
+- Diff is readable and scrollable  
+- No destructive actions in preview  
+- Works for title, body, and tags  
+
+---
+
+### **FEAT‑521 — Implement Diff Utility**
+**Description:**  
+Compute differences between two versions.
+
+**Subtasks**
+- Compare title/body/tags  
+- Detect additions/deletions  
+- Generate diff output  
+- Add tests  
+
+---
+
+### **FEAT‑522 — Implement `<DiffPreview />`**
+**Description:**  
+UI for rendering diffs.
+
+**Subtasks**
+- Render added/removed text  
+- Add color coding  
+- Add scrollable layout  
+- Add safe HTML output  
+
+---
+
+### **FEAT‑523 — Integrate Diff Preview with History Panel**
+**Description:**  
+Show diff when selecting a version.
+
+**Subtasks**
+- Connect version selection  
+- Update preview dynamically  
+- Add loading/transition states  
+- Add fallback for no diff  
+
+---
+
+---
+
+# 🟨 **STORY GROUP D — Restore Version**
+
+## **Story D1 — Restore Previous Version**
+**Description:**  
+Allow users to restore a previous version of a note.
+
+**Acceptance Criteria**
+- User can restore any version  
+- Restoring creates a new snapshot  
+- Confirmation modal appears  
+- Success toast appears  
+- Undo option available  
+
+---
+
+### **FEAT‑531 — Implement Restore Logic**
+**Description:**  
+Replace note content with selected version.
+
+**Subtasks**
+- Replace title/body/tags  
+- Create new snapshot after restore  
+- Persist updated note  
+- Add tests  
+
+---
+
+### **FEAT‑532 — Add Restore Confirmation Modal**
+**Description:**  
+Confirm restore action.
+
+**Subtasks**
+- Add modal UI  
+- Show version timestamp  
+- Add confirm/cancel buttons  
+- Add warning text  
+
+---
+
+### **FEAT‑533 — Add Restore Feedback**
+**Description:**  
+Provide user feedback after restore.
+
+**Subtasks**
+- Add success toast  
+- Add undo option  
+- Add error handling  
+- Add loading state  
+
+---
+
+# ✔ Sprint 5 COMPLETE  
+# ✔ Matches Sprint 1 format exactly  
+# ✔ 4 story groups  
+# ✔ No extra sections  
+# ✔ Ready for implementation  
+
+---
+
+If you want to continue:
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+v2
+👉 **“Generate Sprint 6 in Sprint‑1 format.”**
+
+STORY GROUP A — Drag‑and‑Drop Note Reordering
+Story A1 — Reorder Notes Within a Collection
+Description:  
+Allow users to manually reorder notes inside a collection using drag‑and‑drop.
+
+Acceptance Criteria
+
+User can drag notes to reorder them
+
+Order persists across reloads
+
+Smooth drag animation
+
+Drop targets visible
+
+No accidental drags
+
+FEAT‑601 — Add order Field to Notes
+Description:  
+Store manual ordering for notes.
+
+Subtasks
+
+Add order property
+
+Update persistence layer
+
+Add migration logic
+
+Add fallback default ordering
+
+FEAT‑602 — Implement Drag‑and‑Drop for Notes
+Description:  
+Enable manual note reordering.
+
+Subtasks
+
+Add drag handles
+
+Add drop targets
+
+Update order state
+
+Persist order
+
+FEAT‑603 — Add Reorder Animations
+Description:  
+Smooth transitions during drag.
+
+Subtasks
+
+Add motion transitions
+
+Add hover/focus states
+
+Add placeholder spacing
+
+Add easing curves
+
+🟩 STORY GROUP B — Drag‑and‑Drop Collection Reordering
+Story B1 — Reorder Collections in Sidebar
+Description:  
+Allow users to reorder collections in the sidebar using drag‑and‑drop.
+
+Acceptance Criteria
+
+User can drag collections to reorder
+
+Order persists across reloads
+
+Active collection remains highlighted
+
+Smooth drag animation
+
+No accidental drags
+
+FEAT‑611 — Add order Field to Collections
+Description:  
+Store manual ordering for collections.
+
+Subtasks
+
+Add order property
+
+Update persistence layer
+
+Add migration logic
+
+Add fallback default ordering
+
+FEAT‑612 — Implement Drag‑and‑Drop for Collections
+Description:  
+Enable manual reordering in sidebar.
+
+Subtasks
+
+Add drag handles
+
+Add drop targets
+
+Update order state
+
+Persist order
+
+FEAT‑613 — Add Sidebar Reorder Animations
+Description:  
+Smooth transitions during drag.
+
+Subtasks
+
+Add motion transitions
+
+Add hover/focus states
+
+Add placeholder spacing
+
+Add easing curves
+
+🟧 STORY GROUP C — Tag Reordering & Organization
+Story C1 — Reorder Tags in Sidebar
+Description:  
+Allow users to reorder tags manually for better organization.
+
+Acceptance Criteria
+
+User can drag tags to reorder
+
+Order persists across reloads
+
+Tag colors remain intact
+
+Smooth drag animation
+
+No accidental drags
+
+FEAT‑621 — Add order Field to Tags
+Description:  
+Store manual ordering for tags.
+
+Subtasks
+
+Add order property
+
+Update persistence layer
+
+Add migration logic
+
+Add fallback default ordering
+
+FEAT‑622 — Implement Drag‑and‑Drop for Tags
+Description:  
+Enable manual tag reordering.
+
+Subtasks
+
+Add drag handles
+
+Add drop targets
+
+Update order state
+
+Persist order
+
+FEAT‑623 — Add Tag Reorder Animations
+Description:  
+Smooth transitions during drag.
+
+Subtasks
+
+Add motion transitions
+
+Add hover/focus states
+
+Add placeholder spacing
+
+Add easing curves
+
+🟨 STORY GROUP D — Board Layout Customization
+Story D1 — Customize Note List Layout
+Description:  
+Allow users to switch between list view and grid view, with drag‑and‑drop support in both.
+
+Acceptance Criteria
+
+User can toggle between list and grid
+
+Drag‑and‑drop works in both layouts
+
+Layout preference persists
+
+Smooth transitions
+
+No layout shift issues
+
+FEAT‑631 — Add Layout Toggle (List / Grid)
+Description:  
+UI for switching layouts.
+
+Subtasks
+
+Add toggle button
+
+Add icons for each mode
+
+Add hover/focus states
+
+Persist preference
+
+FEAT‑632 — Implement Grid Layout
+Description:  
+Add grid view for notes.
+
+Subtasks
+
+Add responsive grid
+
+Add spacing + radius
+
+Add hover/focus states
+
+Add animations
+
+FEAT‑633 — Enable Drag‑and‑Drop in Grid View
+Description:  
+Support reordering in grid mode.
+
+Subtasks
+
+Add drag handles
+
+Add drop targets
+
+Update order state
+
+Persist order
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+Perfect — **Option B it is.**  
+We’ll create a **clean, separate sprint** dedicated entirely to productivity enhancements:
+
+# ⭐ **Sprint 7 — Productivity Enhancements**  
+formatted EXACTLY like Sprint 1  
+with:
+
+- EPIC  
+- Story Group A  
+- Story Group B  
+- Story Group C  
+- Story Group D  
+
+And covering:
+
+- Pinning notes  
+- Favorite notes  
+- Quick actions  
+- Sidebar customization  
+- Board personalization  
+
+Here it comes.
+
+---
+
+# ⭐ **EPIC: Sprint 7 — Productivity Enhancements**
+
+> Goal: Improve efficiency and workflow speed by adding pinning, favorites, quick actions, and customizable UI elements that make Note Hub feel faster and more personal.
+
+---
+
+# 🟦 **STORY GROUP A — Pinning Notes**
+
+## **Story A1 — Pin Notes to the Top**
+**Description:**  
+Allow users to pin important notes so they always appear at the top of the list.
+
+**Acceptance Criteria**
+- User can pin/unpin any note  
+- Pinned notes appear above all others  
+- Pinned notes maintain manual order  
+- Pinned state persists across reloads  
+- Pinned notes visually distinguished  
+
+---
+
+### **FEAT‑701 — Add `pinned` Field to Note Schema**
+**Description:**  
+Store pinned state.
+
+**Subtasks**
+- Add `pinned: boolean`  
+- Update persistence layer  
+- Add migration logic  
+- Add schema tests  
+
+---
+
+### **FEAT‑702 — Implement Pin/Unpin UI**
+**Description:**  
+Add pin icon to notes.
+
+**Subtasks**
+- Add pin icon button  
+- Add hover/focus states  
+- Add tooltip  
+- Update note.pinned  
+
+---
+
+### **FEAT‑703 — Update NotesList for Pinned Sorting**
+**Description:**  
+Show pinned notes at top.
+
+**Subtasks**
+- Sort pinned → unpinned  
+- Maintain manual order within pinned  
+- Add visual indicator  
+- Add animation  
+
+---
+
+---
+
+# 🟩 **STORY GROUP B — Favorite Notes**
+
+## **Story B1 — Mark Notes as Favorites**
+**Description:**  
+Allow users to mark notes as favorites for quick access.
+
+**Acceptance Criteria**
+- User can favorite/unfavorite notes  
+- Favorites appear in a dedicated sidebar section  
+- Favorite state persists  
+- Favorites visually distinguished  
+- Works with search + collections  
+
+---
+
+### **FEAT‑711 — Add `favorite` Field to Note Schema**
+**Description:**  
+Store favorite state.
+
+**Subtasks**
+- Add `favorite: boolean`  
+- Update persistence layer  
+- Add migration logic  
+- Add schema tests  
+
+---
+
+### **FEAT‑712 — Implement Favorite Toggle**
+**Description:**  
+Add star icon to notes.
+
+**Subtasks**
+- Add star icon button  
+- Add hover/focus states  
+- Add tooltip  
+- Update note.favorite  
+
+---
+
+### **FEAT‑713 — Add Favorites Section in Sidebar**
+**Description:**  
+Quick access to favorite notes.
+
+**Subtasks**
+- Add “Favorites” section  
+- Render favorite notes  
+- Add empty state  
+- Add animation  
+
+---
+
+---
+
+# 🟧 **STORY GROUP C — Quick Actions**
+
+## **Story C1 — Add Quick Actions Menu**
+**Description:**  
+Add a small action menu on each note for fast interactions.
+
+**Acceptance Criteria**
+- Quick actions appear on hover  
+- Actions include: Pin, Favorite, Move, Delete  
+- Menu is keyboard accessible  
+- Menu animates smoothly  
+- No accidental clicks  
+
+---
+
+### **FEAT‑721 — Implement `<QuickActionsMenu />`**
+**Description:**  
+Reusable quick‑actions component.
+
+**Subtasks**
+- Add menu trigger  
+- Add action list  
+- Add keyboard navigation  
+- Add hover/focus states  
+
+---
+
+### **FEAT‑722 — Integrate Quick Actions into NotesList**
+**Description:**  
+Show quick actions on each note.
+
+**Subtasks**
+- Add hover reveal  
+- Add click interactions  
+- Add animations  
+- Add accessibility labels  
+
+---
+
+### **FEAT‑723 — Add Action Handlers**
+**Description:**  
+Connect quick actions to note logic.
+
+**Subtasks**
+- Pin/unpin  
+- Favorite/unfavorite  
+- Move to collection  
+- Delete note  
+
+---
+
+---
+
+# 🟨 **STORY GROUP D — Sidebar & Board Customization**
+
+## **Story D1 — Customize Sidebar & Board Layout**
+**Description:**  
+Allow users to personalize the sidebar and board layout for a more tailored workspace.
+
+**Acceptance Criteria**
+- User can collapse/expand sidebar sections  
+- User can reorder sidebar sections  
+- User can toggle visibility of sections  
+- Layout preferences persist  
+- Smooth animations  
+
+---
+
+### **FEAT‑731 — Add Sidebar Section Toggles**
+**Description:**  
+Allow hiding/showing sections.
+
+**Subtasks**
+- Add toggle buttons  
+- Persist visibility state  
+- Add animations  
+- Add accessibility labels  
+
+---
+
+### **FEAT‑732 — Implement Sidebar Section Reordering**
+**Description:**  
+Drag‑and‑drop sidebar sections.
+
+**Subtasks**
+- Add drag handles  
+- Add drop targets  
+- Update order state  
+- Persist order  
+
+---
+
+### **FEAT‑733 — Add Board Layout Preferences**
+**Description:**  
+Customize note list behavior.
+
+**Subtasks**
+- Toggle compact vs comfortable spacing  
+- Toggle preview length  
+- Persist preferences  
+- Add transitions  
+
+---
+
+# ✔ Sprint 7 COMPLETE  
+# ✔ Matches Sprint 1 format exactly  
+# ✔ 4 story groups  
+# ✔ No extra sections  
+# ✔ Clean, organized, and ready for implementation  
+
+---
+
+If you want, I can now generate:
+
+👉 **Sprint 8 — Export/Import**  
+👉 **Sprint 8 — Sync (Cloud Storage)**  
+👉 **A full master roadmap (Sprints 1–7)**  
+👉 **A combined implementation checklist for all sprints**
+
+Just tell me what you want next.
